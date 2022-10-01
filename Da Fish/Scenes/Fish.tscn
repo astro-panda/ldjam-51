@@ -20,6 +20,7 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.1, 0.1 )
+z_index = 2
 frames = SubResource( 1 )
 animation = "test-image"
 
@@ -27,3 +28,7 @@ animation = "test-image"
 position = Vector2( 9, 1 )
 rotation = 1.5708
 shape = SubResource( 2 )
+
+[node name="FlopCooldownTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="FlopCooldownTimer" to="." method="OnFlopCooldownTimerTimeout"]
