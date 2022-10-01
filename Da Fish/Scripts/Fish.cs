@@ -3,8 +3,11 @@ using System;
 
 public class Fish : RigidBody2D
 {
-   [Export]
+    [Export]
     public int Speed = 20;
+
+    [Export]
+    public CollectableType CollectedItem = CollectableType.Empty;
 
     public Vector2 ScreenSize; // Size of the game window.
 
