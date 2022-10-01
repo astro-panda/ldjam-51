@@ -6,7 +6,7 @@ pool:
   demands: godot  
 
 steps:
-- script: cd "/Da Fish/"
+- script: ls
 - script: $(godot-exe-location)/godot --export "Web"
   displayName: 'Godot export to Web'
 
