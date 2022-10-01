@@ -30,21 +30,9 @@ jobs:
         uses: manleydev/build-godot-action@v1.4.1
         with:          
           name: FloppyFish
-          preset: "Web"
-          # Optional name of the subdirectory to put exported project in
-          subdirectory: /dist/web               
+          preset: "Web"                  
           projectDir: FloppyFish
-          debugMode: false
-          
-      - name: List exported files
-        run: ls
-        
-      - name: cd to export location
-        run: cd /FloppyFish/dist/web
-        
-      - name: List again
-        run: ls
-    
+          debugMode: false 
       - name: Upload to Static Web App
         if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
         id: builddeploy
@@ -52,9 +40,8 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_RIVER_0B3D11D10 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
-          action: "upload"          
-          app_location: "/FloppyFish/dist/web" # App source code path
-          output_location: "/FloppyFish/dist/web"
+          action: "upload"
+          app_location: ${{ github.workspace }}/${{ steps.build.outputs.build }} # App source code path          
           is_static_export: true
           skip_app_build: true
 
