@@ -6,14 +6,14 @@ pool:
   demands: godot  
 
 steps:
-- script: ls
+- script: cd ./floppy-fish
 - script: $(godot-exe-location)/godot --export "Web"
   displayName: 'Godot export to Web'
 
 - task: AzureStaticWebApp@0
   condition: or(and(eq('${{ variables['Build.SourceBranchName'] }}', 'main'), ne('${{ variables['Build.Reason'] }}', 'PullRequest')), eq('${{ variables['Build.Reason'] }}', 'Manual'))
   inputs:
-    working_directory: '/Da Fish/dist/web'
+    working_directory: './floppy-fish/dist/web'
     app_location: '/'
     skip_app_build: true
     skip_api_build: true
