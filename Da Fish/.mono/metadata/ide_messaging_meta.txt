@@ -1,2 +1,2 @@
-﻿54729
-C:/Users/EthanHair/source/godot/Godot_v3.5.1-stable_mono_win64/Godot_v3.5.1-stable_mono_win64/Godot_v3.5.1-stable_mono_win64.exe
+﻿58574
+D:/Godot_v3.5.1/Godot_v3.5.1-stable_mono_win64.exe
