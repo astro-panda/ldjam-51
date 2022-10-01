@@ -21,8 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    steps:      
       - uses: actions/checkout@v3      
           
       - name: Build Godot        
@@ -32,5 +31,5 @@ jobs:
           preset: "Web"
           # Optional name of the subdirectory to put exported project in
           subdirectory: /dist/web               
-          projectDir: '/Da Fish/'          
+          projectDir: "/Da Fish/"
           debugMode: false
