@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Platform : RigidBody2D
+public class Platform2 : RigidBody2D
 {
     public bool IsInWater = false;
 

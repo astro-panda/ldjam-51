@@ -12,9 +12,12 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 180, 44.25 )
+extents = Vector2( 180, 22.5 )
 
 [node name="Platform" type="RigidBody2D" groups=["platforms"]]
+collision_layer = 10
+collision_mask = 10
+mass = 20.0
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -22,8 +25,8 @@ scale = Vector2( 0.15, 0.15 )
 frames = SubResource( 1 )
 animation = "test"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -3.77492e-08, 0.250002 )
+[node name="FishCollision" type="CollisionShape2D" parent="."]
+position = Vector2( -3.77492e-08, -22.5 )
 shape = SubResource( 2 )
 one_way_collision = true
 one_way_collision_margin = 128.0
