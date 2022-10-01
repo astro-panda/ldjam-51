@@ -3,14 +3,13 @@ using System;
 
 public class Collectable : Area2D
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
+    [Export]
+    public CollectableType Type = CollectableType.Empty;
+    private AnimatedSprite _spriteAnim;
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        
+        _spriteAnim = GetNode<AnimatedSprite>("AnimatedSprite");
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,4 +17,10 @@ public class Collectable : Area2D
 //  {
 //      
 //  }
+
+    public void Spawn(CollectableType type, string spriteAnimName)
+    {
+        Type = type;
+        _spriteAnim.Animation = spriteAnimName;
+    }
 }
