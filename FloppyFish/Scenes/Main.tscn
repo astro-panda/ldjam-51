@@ -71,10 +71,10 @@ __meta__ = {
 polygon = PoolVector2Array( 0, -300, 0, 600, 1024, 600, 1024, -300, 0, -300, 0, -316, 1040, -316, 1040, 616, -16, 616, -16, -300, 0, -300 )
 
 [node name="Platform" parent="." instance=ExtResource( 3 )]
-position = Vector2( 2064, 352 )
+position = Vector2( 1968, 288 )
 
 [node name="Platform2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1408, 352 )
+position = Vector2( 1408, 344 )
 
 [connection signal="body_entered" from="Water" to="Fish" method="OnWaterBodyEntered"]
 [connection signal="body_entered" from="Water" to="Platform" method="OnWaterBodyEntered"]

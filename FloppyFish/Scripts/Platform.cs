@@ -21,7 +21,10 @@ public class Platform : RigidBody2D
             ApplyTorqueImpulse(-15000 * Rotation);
         }
 
-        ApplyCentralImpulse(20 * WaterFlow);
+        if (IsInWater)
+        {
+            ApplyCentralImpulse(20 * WaterFlow);
+        }
     }
 
     public void OnWaterBodyEntered(PhysicsBody2D body)
