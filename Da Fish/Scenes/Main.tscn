@@ -3,6 +3,7 @@
 [ext_resource path="res://Scenes/Fish.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Images/test-water-image.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Main.cs" type="Script" id=3]
+[ext_resource path="res://Scenes/Platform.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 512, 192 )
@@ -46,10 +47,16 @@ animation = "test"
 [node name="Fish" parent="." instance=ExtResource( 1 )]
 position = Vector2( 256, 128 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Walls" type="StaticBody2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
 polygon = PoolVector2Array( 0, 0, 0, 600, 1024, 600, 1024, 0, 0, 0, 0, -16, 1040, -16, 1040, 616, -16, 616, -16, 0, 0, 0 )
 
+[node name="Platform" parent="." instance=ExtResource( 3 )]
+position = Vector2( 808, 472 )
+mass = 20.0
+
 [connection signal="body_entered" from="Water" to="Fish" method="OnWaterBodyEntered"]
+[connection signal="body_entered" from="Water" to="Platform" method="OnWaterBodyEntered"]
 [connection signal="body_exited" from="Water" to="Fish" method="OnWaterBodyExited"]
+[connection signal="body_exited" from="Water" to="Platform" method="OnWaterBodyExited"]
