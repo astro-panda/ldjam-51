@@ -31,5 +31,5 @@ jobs:
           preset: "Web"
           # Optional name of the subdirectory to put exported project in
           subdirectory: /dist/web               
-          projectDir: "/Da Fish/"
+          projectDir: "Da Fish"
           debugMode: false
