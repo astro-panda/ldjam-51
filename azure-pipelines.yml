@@ -13,6 +13,7 @@ steps:
   displayName: 'test godot exe'
 
 - task: AzureStaticWebApp@0
+  condition: or(and(eq('${{ variables['Build.SourceBranchName'] }}', 'main'), ne('${{ variables['Build.Reason'] }}', 'PullRequest')), eq('${{ variables['Build.Reason'] }}', 'Manual'))
   inputs:
     app_location: '/dist/web'
     skip_app_build: true
