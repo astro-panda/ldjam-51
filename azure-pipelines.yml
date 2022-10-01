@@ -6,16 +6,13 @@ pool:
   demands: godot  
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: $(godot-exe-location)/godot
-  displayName: 'test godot exe'
+- script: $(godot-exe-location)/godot --path "/Da Fish/project.godot" --export "Web"
+  displayName: 'Godot export to Web'
 
 - task: AzureStaticWebApp@0
   condition: or(and(eq('${{ variables['Build.SourceBranchName'] }}', 'main'), ne('${{ variables['Build.Reason'] }}', 'PullRequest')), eq('${{ variables['Build.Reason'] }}', 'Manual'))
   inputs:
-    app_location: '/dist/web'
+    app_location: '/Da Fish/dist/web'
     skip_app_build: true
     skip_api_build: true
     is_static_export: true
