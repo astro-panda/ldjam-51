@@ -34,7 +34,7 @@ jobs:
           projectDir: FloppyFish
           debugMode: false 
       - name: unzip package
-        run: 7z x ${{ github.workspace }}/build/package/artifact.zip -o ${{ github.workspace }}/out
+        run: 7z x ${{ github.workspace }}/build/package/artifact.zip -o${{ github.workspace }}/out
       - name: Upload to Static Web App
         if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
         id: builddeploy
