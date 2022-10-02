@@ -173,7 +173,6 @@ public class Fish : RigidBody2D
 
             AirTimer.Start();
             EmitSignal(nameof(SuffcationStart));
-            GD.Print($"AirCountDown: {AirCountDown}");
         }
     }
 
@@ -194,7 +193,6 @@ public class Fish : RigidBody2D
                 Hide();
                 GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
                 EmitSignal("Die");
-                GD.Print("Fish no more");
             }
         }
         
@@ -204,7 +202,6 @@ public class Fish : RigidBody2D
     {
         if (!IsInWater && LocChange < 1)
         {
-            GD.Print("FLOP!!");
             var involuntaryFlopDirection = GD.RandRange((Mathf.Pi * (1/(float)3)), (Mathf.Pi * (2/(float)3)));
             var invFlopVector = new Vector2(200 * Mathf.Cos(involuntaryFlopDirection != 0 ?  (float)involuntaryFlopDirection : (float)(Mathf.Pi / 2)),
                                             -200 * Mathf.Sin((float)involuntaryFlopDirection));
@@ -212,7 +209,6 @@ public class Fish : RigidBody2D
         }
 
         InvFlopTimer.WaitTime = (float)GD.RandRange(0.5, 2.0);
-        GD.Print($"Time until next flop: {InvFlopTimer.WaitTime}");
         InvFlopTimer.Start();
     }
 
