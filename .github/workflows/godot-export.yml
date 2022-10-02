@@ -35,12 +35,8 @@ jobs:
       - name: Build Godot
         run: |
           mkdir ${{ github.workspace }}/build/
-          godot --path FloppyFish --export "Web" ${{ github.workspace }}/build/index -v
+          godot --path FloppyFish --export "Web" ${{ github.workspace }}/build/index.html -v
 
-      - name: list em
-        run: ls
-      - name: list em
-        run: ls ${{ github.workspace }}/build
       - name: Upload to Static Web App
         if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
         id: builddeploy
