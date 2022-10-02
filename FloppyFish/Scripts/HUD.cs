@@ -4,7 +4,7 @@ using System;
 public class HUD : CanvasLayer
 {
 
-    private AnimationPlayer _blackoutAnimation;
+    private AnimationPlayer _animation;
     private Label _waterAirValueLabel;
     private Label _collectCountLabel;
     private bool _fishCurrentlySuffocating = false;
@@ -19,7 +19,7 @@ public class HUD : CanvasLayer
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        _blackoutAnimation = GetNode<AnimationPlayer>("Blackout Animation");
+        _animation = GetNode<AnimationPlayer>("Animation");
         _waterAirValueLabel = GetNode<Label>("Water Air").GetNode<Label>("Water Air Value");
         _collectCountLabel = GetNode<Label>("Collect Counter").GetNode<Label>("Collect Counter Value");
     }
@@ -32,15 +32,15 @@ public class HUD : CanvasLayer
     public void OnFishSuffocatingStart()
     {
         _fishCurrentlySuffocating = true;
-        _blackoutAnimation.Play("Blackout");
+        _animation.Play("Blackout");
     }
 
     public void OnFishSuffocatingStop()
     {
         if (_fishCurrentlySuffocating)
         {
-            _blackoutAnimation.PlayBackwards("Blackout");
-            _blackoutAnimation.Seek(_blackoutAnimation.CurrentAnimationPosition);
+            _animation.PlayBackwards("Blackout");
+            _animation.Seek(_animation.CurrentAnimationPosition);
             _fishCurrentlySuffocating = false;
         }
 
@@ -60,7 +60,18 @@ public class HUD : CanvasLayer
         _collectCountLabel.Text = $"{Mathf.Clamp(CollectedCount, 0, CollectGoal)}";
 
         if(CollectedCount >= CollectGoal)
-            EmitSignal(nameof(AllCollected));
+            FishWin();        
+    }
+
+    public void FishDied()
+    {
+        _animation.Play("Died");
+    }
+
+    public void FishWin()
+    {
+        EmitSignal(nameof(AllCollected));
+        _animation.Play("Win");
     }
 
 }
