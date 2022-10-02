@@ -89,6 +89,7 @@ position = Vector2( 461, 229 )
 [connection signal="body_exited" from="Water" to="Fish" method="OnWaterBodyExited"]
 [connection signal="body_exited" from="Water" to="Platform" method="OnWaterBodyExited"]
 [connection signal="body_exited" from="Water" to="Platform2" method="OnWaterBodyExited"]
+[connection signal="Die" from="Fish" to="HUD" method="FishDied"]
 [connection signal="SetWaterAirValue" from="Fish" to="HUD" method="OnSetWaterAirValue"]
 [connection signal="SuffcationStart" from="Fish" to="HUD" method="OnFishSuffocatingStart"]
 [connection signal="SuffcationStop" from="Fish" to="HUD" method="OnFishSuffocatingStop"]
