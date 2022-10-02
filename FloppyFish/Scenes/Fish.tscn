@@ -34,6 +34,11 @@ shape = SubResource( 2 )
 [node name="FlopCooldownTimer" type="Timer" parent="."]
 
 [node name="AirTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="InvoluntaryFlopTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [connection signal="timeout" from="FlopCooldownTimer" to="." method="OnFlopCooldownTimerTimeout"]
 [connection signal="timeout" from="AirTimer" to="." method="OnAirTimerTimeout"]
+[connection signal="timeout" from="InvoluntaryFlopTimer" to="." method="InvoluntaryFlopTimeout"]
