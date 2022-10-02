@@ -29,16 +29,14 @@ jobs:
       - name: Build Godot        
         uses: manleydev/build-godot-action@v1.4.1
         with:          
-          name: FloppyFish
+          name: index
           preset: "Web"                  
           projectDir: FloppyFish
           debugMode: false 
       - name: list em
-        run: ls ${{ github.workspace }}/build
-      #- name: unzip package
-       # run: 7z x ${{ github.workspace }}/build/package/artifact.zip -o${{ github.workspace }}/out
+        run: ls ${{ github.workspace }}/build      
       - name: Upload to Static Web App
-        if: false #github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
