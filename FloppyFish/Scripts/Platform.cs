@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public class Platform : RigidBody2D
 {   
@@ -8,34 +7,40 @@ public class Platform : RigidBody2D
     public float Damping = -1f;
     [Export]
     public float PullForce = 10f;
+    [Export]
+    public float Speed = 80f;
 
     public Vector2 WaterFlow = new Vector2((float)-0.946,(float)-0.326);
 
-    private Position2D _targetPos;
+    private Vector2 _targetPos = Vector2.Zero;
+    private PathFollow2D _followPos;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        _targetPos = GetNode<Position2D>("TargetPosition");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        if (Rotation != 0)
+        if(_followPos != null)
         {
-            ApplyTorqueImpulse(-15000 * Rotation);
-        }
-
-        if (IsInWater)
-        {
-            ApplyCentralImpulse(20 * WaterFlow);
+            if(_followPos.UnitOffset == 1)
+            {
+                // Hide();
+                // GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
+                QueueFree();
+            }
+            _followPos.Offset += Speed * delta;
+            _targetPos = _followPos.Transform.origin;
         }
     }
 
     public override void _PhysicsProcess(float delta)
     {
-        AddCentralForce((_targetPos.Position - Position) * PullForce - (Vector2.Zero - LinearVelocity) * Damping);
+        ApplyTorqueImpulse((0 - Rotation) * 10000f - (0 - AngularVelocity) * -15f);
+
+        ApplyCentralImpulse(CalculateForce(_targetPos));
     }
 
     public void OnWaterBodyEntered(PhysicsBody2D body)
@@ -56,5 +61,15 @@ public class Platform : RigidBody2D
             AppliedForce = Vector2.Zero;
             AddCentralForce(5 * Vector2.Down);
         }
+    }
+
+    public void Spawn(PathFollow2D followPos)
+    {
+        _followPos = followPos;
+    }
+
+    private Vector2 CalculateForce(Vector2 wantPos)
+    {
+        return (wantPos - Position) * PullForce - (Vector2.Zero - LinearVelocity) * Damping;
     }
 }

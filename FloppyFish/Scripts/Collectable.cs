@@ -1,8 +1,11 @@
 using Godot;
 using System;
 
-public class Collectable : Area2D
+public class Collectable : RigidBody2D
 {
+    [Signal]
+    public delegate void CollectableCollected(CollectableType type);
+
     [Export]
     public CollectableType Type = CollectableType.Empty;
     private AnimatedSprite _spriteAnim;
@@ -20,6 +23,14 @@ public class Collectable : Area2D
     {
         if(Input.IsActionJustPressed("action"))
             EmitSignal(nameof(Collected));
+    }
+
+    public void OnBodyEntered(PhysicsBody2D body)
+    {
+        if(body.IsInGroup("Fish"))
+        {
+            EmitSignal("CollectableCollected", Type);
+        }
     }
 
     public void Spawn(CollectableType type, string spriteAnimName)

@@ -35,5 +35,6 @@ shape = SubResource( 2 )
 
 [node name="AirTimer" type="Timer" parent="."]
 
+[connection signal="body_entered" from="." to="." method="OnCollectableEntered"]
 [connection signal="timeout" from="FlopCooldownTimer" to="." method="OnFlopCooldownTimerTimeout"]
 [connection signal="timeout" from="AirTimer" to="." method="OnAirTimerTimeout"]
