@@ -1,8 +1,28 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/HUD.cs" type="Script" id=1]
 [ext_resource path="res://Fonts/Red_Hat_Display/static/RedHatDisplay-Black.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Fonts/Red_Hat_Display/static/RedHatDisplay-Medium.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 25
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://Fonts/Red_Hat_Display/static/RedHatDisplay-Medium.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 50
+font_data = SubResource( 5 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "Blackout"
@@ -14,23 +34,62 @@ tracks/0/loop_wrap = false
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.1, 9.9 ),
+"times": PoolRealArray( 0, 9.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0.0980392, 0.00392157, 0.00392157, 0 ), Color( 0.0980392, 0.00392157, 0.00392157, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=2]
-size = 30
-use_filter = true
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 53
-font_data = ExtResource( 2 )
-
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 50.0 ]
+}
+
+[node name="Water Air" type="Label" parent="."]
+margin_left = 790.0
+margin_top = 12.0
+margin_right = 993.0
+margin_bottom = 53.0
+custom_fonts/font = SubResource( 2 )
+text = "Water Air"
+autowrap = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Water Air Value" type="Label" parent="Water Air"]
+margin_left = 151.0
+margin_top = -17.0
+margin_right = 208.0
+margin_bottom = 54.0
+custom_fonts/font = SubResource( 3 )
+text = "10"
+
+[node name="Collect Counter" type="Label" parent="."]
+margin_left = 194.0
+margin_top = 14.0
+margin_right = 334.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 4 )
+text = "Parts Found"
+
+[node name="Collect Counter Value" type="Label" parent="Collect Counter"]
+margin_left = -171.0
+margin_top = -17.0
+margin_right = -134.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 6 )
+text = "0"
+align = 2
+
+[node name="Collect Total" type="Label" parent="Collect Counter"]
+margin_left = -114.0
+margin_top = -17.0
+margin_right = -18.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 6 )
+text = "/ 20"
 
 [node name="Blackout Layer" type="ColorRect" parent="."]
 margin_right = 1024.0
@@ -43,23 +102,3 @@ __meta__ = {
 [node name="Blackout Animation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Blackout Layer")
 anims/Blackout = SubResource( 1 )
-
-[node name="Water Air" type="Label" parent="."]
-margin_left = 819.0
-margin_top = 7.0
-margin_right = 1022.0
-margin_bottom = 48.0
-custom_fonts/font = SubResource( 2 )
-text = "Water Air"
-autowrap = true
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Water Air Value" type="Label" parent="Water Air"]
-margin_left = 136.0
-margin_top = -17.0
-margin_right = 193.0
-margin_bottom = 54.0
-custom_fonts/font = SubResource( 3 )
-text = "10"

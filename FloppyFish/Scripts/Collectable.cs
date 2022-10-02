@@ -7,16 +7,20 @@ public class Collectable : Area2D
     public CollectableType Type = CollectableType.Empty;
     private AnimatedSprite _spriteAnim;
 
+    [Signal]
+    public delegate void Collected();
+
     public override void _Ready()
     {
         _spriteAnim = GetNode<AnimatedSprite>("AnimatedSprite");
     }
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+   
+    public override void _Process(float delta)
+    {
+        if(Input.IsActionJustPressed("action"))
+            EmitSignal(nameof(Collected));
+    }
 
     public void Spawn(CollectableType type, string spriteAnimName)
     {
