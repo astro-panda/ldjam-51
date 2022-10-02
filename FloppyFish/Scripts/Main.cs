@@ -12,7 +12,7 @@ public class Main : Node
     private Timer _platformSpawnTimer;
 
     [Export]
-    public PackedScene Fish;
+    public PackedScene FishScene;
     private Position2D _fishSpawnPos;
 
     private List<CollectableType> _collectedCollectables;
@@ -30,6 +30,9 @@ public class Main : Node
     public void StartGame()
     {
         _platformSpawnTimer.Start(2f);
+        Fish fish = (Fish)FishScene.Instance();
+        fish.Position = _fishSpawnPos.Position;
+        AddChild(fish);
     }
 
     public void OnPlatformSpawnTimeOut()
