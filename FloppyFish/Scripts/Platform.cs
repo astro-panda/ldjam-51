@@ -16,13 +16,13 @@ public class Platform : RigidBody2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
+        if (Rotation != 0)
+        {
+            ApplyTorqueImpulse(-15000 * Rotation);
+        }
+
         if (IsInWater)
         {
-            if (Rotation != 0)
-            {
-                ApplyTorqueImpulse(-5000 * Rotation);
-            }
-
             ApplyCentralImpulse(20 * WaterFlow);
         }
     }
@@ -43,7 +43,7 @@ public class Platform : RigidBody2D
         {
             IsInWater = false;
             AppliedForce = Vector2.Zero;
-            AddCentralForce(Vector2.Down);
+            AddCentralForce(5 * Vector2.Down);
         }
     }
 }
