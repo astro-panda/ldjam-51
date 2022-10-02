@@ -35,6 +35,10 @@ public class Fish : RigidBody2D
 
     public Timer AirTimer;
 
+    public Timer InvFlopTimer;
+
+    public float LocChange = 0.0f;
+
     [Export]
     public int AirCountDown = 10;
 
@@ -45,7 +49,8 @@ public class Fish : RigidBody2D
         PreviousPosition = Position;
         GetNode<Timer>("FlopCooldownTimer").Start();
         AirTimer = GetNode<Timer>("AirTimer");
-        GD.Print($"AirCountDown: {AirCountDown}");
+        InvFlopTimer = GetNode<Timer>("InvoluntaryFlopTimer");
+        InvFlopTimer.Start();
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -104,9 +109,9 @@ public class Fish : RigidBody2D
             ApplyCentralImpulse(WaterFlow);
         }
 
-        var locChange = Math.Abs(Position.DistanceTo(PreviousPosition));
+        LocChange = Math.Abs(Position.DistanceTo(PreviousPosition));
 
-        if (!IsInWater && locChange < 1 && canFlop)
+        if (!IsInWater && LocChange < 1 && canFlop)
         {
             var flopDirection = 0.0;
             var flopRot = 0f;
@@ -193,6 +198,22 @@ public class Fish : RigidBody2D
             }
         }
         
+    }
+
+    public void InvoluntaryFlopTimeout()
+    {
+        if (!IsInWater && LocChange < 1)
+        {
+            GD.Print("FLOP!!");
+            var involuntaryFlopDirection = GD.RandRange((Mathf.Pi * (1/(float)3)), (Mathf.Pi * (2/(float)3)));
+            var invFlopVector = new Vector2(200 * Mathf.Cos(involuntaryFlopDirection != 0 ?  (float)involuntaryFlopDirection : (float)(Mathf.Pi / 2)),
+                                            -200 * Mathf.Sin((float)involuntaryFlopDirection));
+            ApplyCentralImpulse(invFlopVector);
+        }
+
+        InvFlopTimer.WaitTime = (float)GD.RandRange(0.5, 2.0);
+        GD.Print($"Time until next flop: {InvFlopTimer.WaitTime}");
+        InvFlopTimer.Start();
     }
 
     public override void _Draw()
