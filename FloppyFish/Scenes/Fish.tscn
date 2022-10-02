@@ -39,6 +39,7 @@ autostart = true
 [node name="InvoluntaryFlopTimer" type="Timer" parent="."]
 wait_time = 0.5
 
+[connection signal="body_entered" from="." to="." method="OnCollectableEntered"]
 [connection signal="timeout" from="FlopCooldownTimer" to="." method="OnFlopCooldownTimerTimeout"]
 [connection signal="timeout" from="AirTimer" to="." method="OnAirTimerTimeout"]
 [connection signal="timeout" from="InvoluntaryFlopTimer" to="." method="InvoluntaryFlopTimeout"]

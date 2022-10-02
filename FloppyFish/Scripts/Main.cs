@@ -11,9 +11,7 @@ public class Main : Node
     private Position2D _platformSpawnPos;
     private Timer _platformSpawnTimer;
 
-    [Export]
-    public PackedScene FishScene;
-    private Position2D _fishSpawnPos;
+    private Fish _fish;
 
     private List<CollectableType> _collectedCollectables;
 
@@ -21,18 +19,17 @@ public class Main : Node
     {
         _platformSpawnPos = GetNode<Position2D>("PlatformSpawnPosition");
         _platformSpawnTimer = GetNode<Timer>("PlatformSpawnTimer");
-        _fishSpawnPos = GetNode<Position2D>("FishSpawnPosition");
-
+        _fish = GetNode<Fish>("Fish");
+        
         StartGame();
+        Connect("CollectableCollected", _fish, "CollectableCollected");
     }
 
     // We can call this on button press later
     public void StartGame()
     {
         _platformSpawnTimer.Start(2f);
-        Fish fish = (Fish)FishScene.Instance();
-        fish.Position = _fishSpawnPos.Position;
-        AddChild(fish);
+        _fish.Show();
     }
 
     public void OnPlatformSpawnTimeOut()
@@ -41,5 +38,16 @@ public class Main : Node
         Platform plat = (Platform)PlatformScene.Instance();
         plat.Position = _platformSpawnPos.Position;
         AddChild(plat);
+
+        PathFollow2D path = new PathFollow2D();
+        path.Loop = false;
+        var parent = GetNode<Path2D>("PlatformPath");
+        parent.AddChild(path);
+        plat.Spawn(path);
+    }
+
+    public void CollectableCollected(CollectableType type)
+    {
+        GD.Print($"I collected a {nameof(type)}");
     }
 }
