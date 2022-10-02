@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Audio/forest-with-small-river-birds-and-nature-field-recording-6735.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Scripts/AudioController.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/OneShotFoleyController.cs" type="Script" id=3]
+[ext_resource path="res://Audio/Rainy Day.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Audio/Foley/Fish/Fish-PickUp.wav" type="AudioStream" id=5]
+
+[node name="Audio Controller" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Background" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+autoplay = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[node name="FishFoley" type="AudioStreamPlayer" parent="."]
+pause_mode = 1
+bus = "Fish"
+script = ExtResource( 3 )
+Streams = {
+"Drop": null,
+"Flop": null,
+"MoveFlop": null,
+"PickUp": ExtResource( 5 ),
+"SplashInHighVelo": null,
+"SplashInLowVelo": null,
+"SplashOutHighVelo": null,
+"SplashOutLowVelo": null
+}
+
+[node name="LogFoley" type="AudioStreamPlayer" parent="."]
+bus = "Platforms"
+script = ExtResource( 3 )
+Streams = {
+"Bob1": null,
+"Bob2": null,
+"FishLandHighVelo": null,
+"FishLandLowVelo": null,
+"SplashIn": null
+}
+
+[node name="TrashFoley" type="AudioStreamPlayer" parent="."]
+bus = "Platforms"
+script = ExtResource( 3 )
+Streams = {
+"Bob1": null,
+"Bob2": null,
+"FishLandHighVelo": null,
+"FishLandLowVelo": null,
+"SplashIn": null,
+"TrashRustle1": null,
+"TrashRustle2": null,
+"TrashRustle3": null
+}
+
+[node name="CollectibleFoley" type="AudioStreamPlayer" parent="."]
+bus = "Collectibles"
+script = ExtResource( 3 )
+Streams = {
+"LandOnLog": null,
+"LandOnRiverBottom": null,
+"LandOnTrash": null,
+"PickUp": null
+}

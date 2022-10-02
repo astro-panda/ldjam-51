@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Rainy Day.mp3-79ddaeb6e74c054ef1b8b31a8e7d828e.mp3str"
+
+[deps]
+
+source_file="res://Audio/Rainy Day.mp3"
+dest_files=[ "res://.import/Rainy Day.mp3-79ddaeb6e74c054ef1b8b31a8e7d828e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
