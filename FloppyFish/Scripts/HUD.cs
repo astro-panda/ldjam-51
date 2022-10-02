@@ -16,8 +16,7 @@ public class HUD : CanvasLayer
 
     public void OnSetWaterAirValue(int value)
     {
-        int finalValue = Mathf.Clamp(value, 0, 10);
-        _waterAirValueLabel.Text = $"{finalValue}";
+        SetWaterAir(value);
     }
 
     public void OnFishSuffocatingStart()
@@ -34,6 +33,14 @@ public class HUD : CanvasLayer
             _blackoutAnimation.Seek(_blackoutAnimation.CurrentAnimationPosition);
             _fishCurrentlySuffocating = false;
         }
+
+        SetWaterAir(10);
+    }
+
+    private void SetWaterAir(int value)
+    {
+        int finalValue = Mathf.Clamp(value, 0, 10);
+        _waterAirValueLabel.Text = $"{finalValue}";
     }
 
 }
