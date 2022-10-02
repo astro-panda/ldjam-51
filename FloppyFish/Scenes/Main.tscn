@@ -23,6 +23,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1408, 296, 413.254, -25.1984, -413.254, 25.1984, 512, 280, 0, 0, 0, 0, -448, 256 )
+}
+
 [node name="Main" type="Node"]
 script = ExtResource( 6 )
 __meta__ = {
@@ -80,8 +85,11 @@ polygon = PoolVector2Array( 0, -300, 0, 600, 1024, 600, 1024, -300, 0, -300, 0, 
 
 [node name="PlatformSpawnTimer" type="Timer" parent="."]
 
+[node name="PlatformPath" type="Path2D" parent="."]
+curve = SubResource( 4 )
+
 [node name="PlatformSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 960, 256 )
+position = Vector2( 1280, 264 )
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
 
