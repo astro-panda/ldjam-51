@@ -9,6 +9,9 @@ public class Fish : RigidBody2D
     [Export]
     public CollectableType CollectedItem = CollectableType.Empty;
 
+    [Signal]
+    public delegate void Die();
+
     public Vector2 ScreenSize; // Size of the game window.
 
     public bool IsInWater = false;
@@ -21,13 +24,19 @@ public class Fish : RigidBody2D
 
     public Vector2 vectorToDraw = Vector2.Zero;
 
+    public Timer AirTimer;
+
+    [Export]
+    public int AirCountDown = 10;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        GD.Print($"Rotation: {Rotation}");
         ScreenSize = GetViewportRect().Size;
         PreviousPosition = Position;
         GetNode<Timer>("FlopCooldownTimer").Start();
+        AirTimer = GetNode<Timer>("AirTimer");
+        GD.Print($"AirCountDown: {AirCountDown}");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -135,6 +144,9 @@ public class Fish : RigidBody2D
         if (body.IsInGroup("fish"))
         {
             IsInWater = true;
+
+            AirTimer.Stop();
+            AirCountDown = 10;
         }
     }
 
@@ -143,12 +155,33 @@ public class Fish : RigidBody2D
         if (body.IsInGroup("fish"))
         {
             IsInWater = false;
+
+            AirTimer.Start();
+            GD.Print($"AirCountDown: {AirCountDown}");
         }
     }
 
     public void OnFlopCooldownTimerTimeout()
     {
         canFlop = true;
+    }
+
+    public void OnAirTimerTimeout()
+    {
+        if (AirCountDown > 0)
+        {
+            AirCountDown -= 1;
+            GD.Print($"AirCountDown: {AirCountDown}");
+
+            if (AirCountDown == 0)
+            {
+                Hide();
+                GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
+                EmitSignal("Die");
+                GD.Print("Fish no more");
+            }
+        }
+        
     }
 
     public override void _Draw()
