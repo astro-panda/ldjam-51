@@ -36,7 +36,7 @@ jobs:
       - name: Install Godot
         uses: paulloz/godot-action@v1.1
         with:
-          version: 3.5.1
+          version: 3.5
           mono: true
           export-templates: false
       
