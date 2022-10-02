@@ -4,8 +4,8 @@
 [ext_resource path="res://Images/test-water-image.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Platform.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Platform2.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/Main.cs" type="Script" id=5]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Main.cs" type="Script" id=6]
 [ext_resource path="res://Scenes/Collectable.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Audio Controller.tscn" type="PackedScene" id=7]
 
@@ -24,12 +24,14 @@ animations = [ {
 } ]
 
 [node name="Main" type="Node"]
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 __meta__ = {
-"_editor_description_": "It is the Main Scene."
+"_editor_description_": "Its the Main Scene. What of it."
 }
 PlatformScene = ExtResource( 3 )
 Fish = ExtResource( 1 )
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
 
 [node name="Air" type="Area2D" parent="."]
 space_override = 3
@@ -67,9 +69,6 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Fish" parent="." instance=ExtResource( 1 )]
-position = Vector2( 256, 128 )
-
 [node name="Walls" type="StaticBody2D" parent="."]
 __meta__ = {
 "_edit_group_": true,
@@ -79,11 +78,10 @@ __meta__ = {
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
 polygon = PoolVector2Array( 0, -300, 0, 600, 1024, 600, 1024, -300, 0, -300, 0, -316, 1040, -316, 1040, 616, -16, 616, -16, -300, 0, -300 )
 
-[node name="Platform" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1952, 221 )
+[node name="PlatformSpawnTimer" type="Timer" parent="."]
 
-[node name="Platform2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1408, 344 )
+[node name="PlatformSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 960, 256 )
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
 
@@ -92,17 +90,16 @@ position = Vector2( 461, 229 )
 
 [node name="Audio Controller" parent="." instance=ExtResource( 7 )]
 
-[node name="PlatformSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 1408, 296 )
+[node name="Fish" parent="." instance=ExtResource( 1 )]
+position = Vector2( 256, 128 )
+
+[node name="Platform2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1688, 240 )
 
 [connection signal="body_entered" from="Water" to="Fish" method="OnWaterBodyEntered"]
-[connection signal="body_entered" from="Water" to="Platform" method="OnWaterBodyEntered"]
 [connection signal="body_entered" from="Water" to="Platform2" method="OnWaterBodyEntered"]
 [connection signal="body_exited" from="Water" to="Fish" method="OnWaterBodyExited"]
-[connection signal="body_exited" from="Water" to="Platform" method="OnWaterBodyExited"]
 [connection signal="body_exited" from="Water" to="Platform2" method="OnWaterBodyExited"]
 [connection signal="Die" from="Fish" to="HUD" method="FishDied"]
-[connection signal="SetWaterAirValue" from="Fish" to="HUD" method="OnSetWaterAirValue"]
-[connection signal="SuffcationStart" from="Fish" to="HUD" method="OnFishSuffocatingStart"]
-[connection signal="SuffcationStop" from="Fish" to="HUD" method="OnFishSuffocatingStop"]
+[connection signal="timeout" from="PlatformSpawnTimer" to="." method="OnPlatformSpawnTimeOut"]
 [connection signal="Collected" from="Collectable" to="Audio Controller" method="OnFoleyTriggered" binds= [ "Fish", "PickUp", Vector2( 0, 0 ) ]]
