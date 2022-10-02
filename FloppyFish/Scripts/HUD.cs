@@ -5,18 +5,19 @@ public class HUD : CanvasLayer
 {
     
     private AnimationPlayer _blackoutAnimation;
+    private Label _waterAirValueLabel;
     private bool _fishCurrentlySuffocating = false;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        _blackoutAnimation = GetNode<AnimationPlayer>("Blackout Animation");       
+        _blackoutAnimation = GetNode<AnimationPlayer>("Blackout Animation");
+        _waterAirValueLabel = GetNode<Label>("Water Air").GetNode<Label>("Water Air Value");
     }
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+    public void OnSetWaterAirValue(int value)
+    {
+        SetWaterAir(value);
+    }
 
     public void OnFishSuffocatingStart()
     {
@@ -32,6 +33,14 @@ public class HUD : CanvasLayer
             _blackoutAnimation.Seek(_blackoutAnimation.CurrentAnimationPosition);
             _fishCurrentlySuffocating = false;
         }
+
+        SetWaterAir(10);
+    }
+
+    private void SetWaterAir(int value)
+    {
+        int finalValue = Mathf.Clamp(value, 0, 10);
+        _waterAirValueLabel.Text = $"{finalValue}";
     }
 
 }
