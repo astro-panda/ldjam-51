@@ -18,6 +18,9 @@ public class Fish : RigidBody2D
     [Signal]
     public delegate void SuffcationStart();
 
+    [Signal]
+    public delegate void SetWaterAirValue(int value);
+
     public Vector2 ScreenSize; // Size of the game window.
 
     public bool IsInWater = false;
@@ -179,7 +182,7 @@ public class Fish : RigidBody2D
         if (AirCountDown > 0)
         {
             AirCountDown -= 1;
-            GD.Print($"AirCountDown: {AirCountDown}");
+            EmitSignal(nameof(SetWaterAirValue), AirCountDown);
 
             if (AirCountDown == 0)
             {
