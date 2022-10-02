@@ -33,7 +33,9 @@ jobs:
           mono: true          
       
       - name: Build Godot
-        run: godot --path FloppyFish --export "Web" /${{ github.workspace }}/build/index -v
+        run: |
+          mkdir ${{ github.workspace }}/build/
+          godot --path FloppyFish --export "Web" ${{ github.workspace }}/build/index -v
 
       - name: list em
         run: ls
