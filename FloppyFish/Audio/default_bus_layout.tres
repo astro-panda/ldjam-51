@@ -1,7 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=2]
-
-[sub_resource type="AudioEffectCompressor" id=1]
-resource_name = "Compressor"
+[gd_resource type="AudioBusLayout" format=2]
 
 [resource]
 bus/1/name = "Background"
@@ -22,8 +19,6 @@ bus/3/mute = false
 bus/3/bypass_fx = false
 bus/3/volume_db = -4.00569
 bus/3/send = "Foley"
-bus/3/effect/0/effect = SubResource( 1 )
-bus/3/effect/0/enabled = true
 bus/4/name = "Platforms"
 bus/4/solo = false
 bus/4/mute = false

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Fish-Flop.ogg-c7eef28adae8471f8090ffc21094fb50.oggstr"
+
+[deps]
+
+source_file="res://Audio/Foley/Fish/Fish-Flop.ogg"
+dest_files=[ "res://.import/Fish-Flop.ogg-c7eef28adae8471f8090ffc21094fb50.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
