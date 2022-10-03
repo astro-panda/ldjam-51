@@ -80,7 +80,7 @@ public class Fish : RigidBody2D
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(float delta)
+	public override void _PhysicsProcess(float delta)
 	{
 		var velocity = Vector2.Zero; // The player's movement vector.
 		var animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
