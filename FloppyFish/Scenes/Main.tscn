@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Fish.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Images/test-water-image.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Platform.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Platform2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Main.cs" type="Script" id=4]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Collectable.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Audio Controller.tscn" type="PackedScene" id=7]
@@ -22,10 +22,23 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1433.11, 280, 68.3721, -1.5874, -68.3721, 1.5874, 1057.22, 248, 73.0338, -1.5874, -73.0338, 1.5874, 837.941, 288, 63.7104, 1.5874, -63.7104, -1.5874, 689.148, 264, 52.2306, 2.17059, -52.2306, -2.17059, 493.367, 288, 123.657, -0.353051, -123.657, 0.353051, 305.418, 272, 43.5095, -1.5874, -43.5095, 1.5874, 117.468, 288, 41.9556, 0, -41.9556, 0, -70.481, 248, 0, 0, 0, 0, -446.38, 288 )
+}
+
 [node name="Main" type="Node"]
-script = ExtResource( 3 )
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": "Its the Main Scene. What of it."
+}
+PlatformScene = ExtResource( 3 )
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
 
 [node name="Air" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 space_override = 3
 gravity = 1000.0
 __meta__ = {
@@ -61,10 +74,9 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Fish" parent="." instance=ExtResource( 1 )]
-position = Vector2( 256, 128 )
-
 [node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 12
+collision_mask = 12
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -73,27 +85,30 @@ __meta__ = {
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
 polygon = PoolVector2Array( 0, -300, 0, 600, 1024, 600, 1024, -300, 0, -300, 0, -316, 1040, -316, 1040, 616, -16, 616, -16, -300, 0, -300 )
 
-[node name="Platform" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1952, 221 )
+[node name="PlatformSpawnTimer" type="Timer" parent="."]
 
-[node name="Platform2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1408, 344 )
+[node name="PlatformPath" type="Path2D" parent="."]
+position = Vector2( 32, 48 )
+scale = Vector2( 1.02155, 1 )
+curve = SubResource( 4 )
 
-[node name="HUD" parent="." instance=ExtResource( 5 )]
-
-[node name="Collectable" parent="." instance=ExtResource( 6 )]
-position = Vector2( 461, 229 )
+[node name="PlatformSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 1280, 264 )
 
 [node name="Audio Controller" parent="." instance=ExtResource( 7 )]
 
+[node name="Collectable" parent="." instance=ExtResource( 6 )]
+position = Vector2( 848, 532 )
+scale = Vector2( 1.02155, 1 )
+
+[node name="Fish" parent="." instance=ExtResource( 1 )]
+position = Vector2( 200, 208 )
+
 [connection signal="body_entered" from="Water" to="Fish" method="OnWaterBodyEntered"]
-[connection signal="body_entered" from="Water" to="Platform" method="OnWaterBodyEntered"]
-[connection signal="body_entered" from="Water" to="Platform2" method="OnWaterBodyEntered"]
 [connection signal="body_exited" from="Water" to="Fish" method="OnWaterBodyExited"]
-[connection signal="body_exited" from="Water" to="Platform" method="OnWaterBodyExited"]
-[connection signal="body_exited" from="Water" to="Platform2" method="OnWaterBodyExited"]
+[connection signal="timeout" from="PlatformSpawnTimer" to="." method="OnPlatformSpawnTimeOut"]
+[connection signal="CollectedCollectable" from="Fish" to="HUD" method="OnCollectableCollected"]
 [connection signal="Die" from="Fish" to="HUD" method="FishDied"]
-[connection signal="SetWaterAirValue" from="Fish" to="HUD" method="OnSetWaterAirValue"]
+[connection signal="SetWaterAirValue" from="Fish" to="HUD" method="SetWaterAir"]
 [connection signal="SuffcationStart" from="Fish" to="HUD" method="OnFishSuffocatingStart"]
 [connection signal="SuffcationStop" from="Fish" to="HUD" method="OnFishSuffocatingStop"]
-[connection signal="Collected" from="Collectable" to="Audio Controller" method="OnFoleyTriggered" binds= [ "Fish", "PickUp", Vector2( 0, 0 ) ]]
