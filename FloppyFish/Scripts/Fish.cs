@@ -24,6 +24,9 @@ public class Fish : RigidBody2D
     [Signal]
     public delegate void HoldingCollectible();
 
+    [Signal]
+    public delegate void WaterEntererd(Vector2 velocity);
+
     public Vector2 ScreenSize; // Size of the game window.
 
     public bool IsInWater = false;
@@ -180,6 +183,7 @@ public class Fish : RigidBody2D
 
             AirTimer.Stop();
             EmitSignal(nameof(SuffcationStop));
+            EmitSignal(nameof(WaterEntererd));
             AirCountDown = 10;
         }
     }
