@@ -46,6 +46,8 @@ public class Fish : RigidBody2D
 	public Timer AirTimer;
 
 	public Timer InvFlopTimer;
+	
+	private Camera2D _camera;
 
 	[Export]
 	public int AirCountDown = 10;
@@ -63,6 +65,11 @@ public class Fish : RigidBody2D
 		AirTimer = GetNode<Timer>("AirTimer");
 		InvFlopTimer = GetNode<Timer>("InvoluntaryFlopTimer");
 		InvFlopTimer.Start();
+		_camera = GetNode<Camera2D>("Camera");
+		_camera.LimitLeft = 0;
+		_camera.LimitRight = (int)ScreenSize.x;
+		_camera.LimitBottom = (int)ScreenSize.y;
+		_camera.LimitTop = -212;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
