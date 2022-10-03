@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/Fish.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Images/test-water-image.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/Audio Controller.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/OctopusMech.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Images/Pixelart/backdrop.png" type="Texture" id=9]
+[ext_resource path="res://Images/Pixelart/mech.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 1440, 300 )
@@ -56,6 +57,26 @@ animations = [ {
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 1433.11, 280, 68.3721, -1.5874, -68.3721, 1.5874, 1057.22, 248, 73.0338, -1.5874, -73.0338, 1.5874, 837.941, 288, 63.7104, 1.5874, -63.7104, -1.5874, 689.148, 264, 52.2306, 2.17059, -52.2306, -2.17059, 493.367, 288, 123.657, -0.353051, -123.657, 0.353051, 305.418, 272, 43.5095, -1.5874, -43.5095, 1.5874, 117.468, 288, 41.9556, 0, -41.9556, 0, -70.481, 248, 0, 0, 0, 0, -446.38, 288 )
 }
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 128, 32 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ SubResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Main" type="Node"]
 script = ExtResource( 4 )
@@ -138,17 +159,28 @@ position = Vector2( 1280, 264 )
 position = Vector2( 200, 208 )
 
 [node name="OctopusMech" parent="." instance=ExtResource( 8 )]
-position = Vector2( 104, 504 )
+position = Vector2( 248, 504 )
 
 [node name="WaterOverlay" type="Node2D" parent="."]
-visible = false
 z_index = 1
 
 [node name="ColorRect" type="ColorRect" parent="WaterOverlay"]
-margin_top = 280.0
+margin_top = 456.0
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0.223529, 0.541176, 0.72549, 0.27451 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="WaterOverlay"]
+modulate = Color( 1, 1, 1, 0.27451 )
+position = Vector2( 512, 328 )
+scale = Vector2( 8, 8 )
+frames = SubResource( 11 )
+
+[node name="Mech" type="AnimatedSprite" parent="."]
+position = Vector2( 96, 504 )
+scale = Vector2( 6, 6 )
+z_index = -1
+frames = SubResource( 9 )
 
 [node name="Audio Controller" parent="." instance=ExtResource( 7 )]
 
