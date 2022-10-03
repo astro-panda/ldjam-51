@@ -28,6 +28,8 @@ public class Main : Node
             GD.Load<PackedScene>("res://Scenes/Platform.tscn"),
             GD.Load<PackedScene>("res://Scenes/Platform2.tscn")
         };
+
+        StartGame(); // We gona start it up.
     }
 
     // We can call this on button press later
@@ -75,7 +77,7 @@ public class Main : Node
 	{
 		if(_canSpawnCollectable)
 		{            
-			_collectableSpawnTimer.WaitTime = (float)GD.RandRange(8d, 16d);
+			_collectableSpawnTimer.WaitTime = (float)GD.RandRange(2d, 16d);
 			_collectableSpawnTimer.Start();
 			_canSpawnCollectable = false;
 		}
