@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Log-SplashIn.wav-0d7ef2b772fc0824c237f398a8c3fed5.sample"
+
+[deps]
+
+source_file="res://Audio/Foley/LogPlatform/Log-SplashIn.wav"
+dest_files=[ "res://.import/Log-SplashIn.wav-0d7ef2b772fc0824c237f398a8c3fed5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

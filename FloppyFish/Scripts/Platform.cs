@@ -15,9 +15,15 @@ public class Platform : RigidBody2D
     private Vector2 _targetPos = Vector2.Zero;
     private PathFollow2D _followPos;
 
+    private Position2D _collectibleSpawn;
+
+    private PackedScene _collectibleScene;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        _collectibleSpawn = GetNode<Position2D>("CollectibleSpawn");
+        _collectibleScene = GD.Load<PackedScene>("res://Scenes/Collectable.tscn");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,8 +33,6 @@ public class Platform : RigidBody2D
         {
             if(_followPos.UnitOffset == 1)
             {
-                // Hide();
-                // GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
                 QueueFree();
             }
             _followPos.Offset += Speed * delta;
@@ -66,6 +70,15 @@ public class Platform : RigidBody2D
     public void Spawn(PathFollow2D followPos)
     {
         _followPos = followPos;
+        Collectable collectable = _collectibleScene.InstanceOrNull<Collectable>();
+
+        if(collectable != null)
+        {
+            AnimatedSprite sprite = collectable.GetNode<AnimatedSprite>("AnimatedSprite");
+
+            collectable.Position = _collectibleSpawn.Position;
+            AddChild(collectable);
+        }
     }
 
     private Vector2 CalculateForce(Vector2 wantPos)

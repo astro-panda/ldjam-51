@@ -1,6 +1,8 @@
 # Godot-specific ignores
 .import/
 
+!Audio/Foley/Log/
+
 # Imported translations (automatically generated from CSV files)
 *.translation
 

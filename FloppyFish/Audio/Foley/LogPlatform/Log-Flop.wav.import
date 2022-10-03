@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Log-Flop.wav-09a323376e90e81f351f75cf0717d96b.sample"
+
+[deps]
+
+source_file="res://Audio/Foley/LogPlatform/Log-Flop.wav"
+dest_files=[ "res://.import/Log-Flop.wav-09a323376e90e81f351f75cf0717d96b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

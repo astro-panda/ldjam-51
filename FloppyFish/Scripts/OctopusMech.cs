@@ -25,7 +25,7 @@ public class OctopusMech : Area2D
             var fish = (Fish)body;
             if (fish.HasCollectible)
             {
-                EmitSignal("CollectedCollectable", fish.CollectedItem);
+                EmitSignal("CollectedCollectable");
                 fish.HasCollectible = false;
                 fish.CollectedItem = CollectableType.Empty;
             }

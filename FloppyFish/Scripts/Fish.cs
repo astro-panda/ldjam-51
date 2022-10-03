@@ -33,15 +33,6 @@ public class Fish : RigidBody2D
     [Signal]
     public delegate void MovementChanged(string foleyGroup, string foleyKey);
 
-    [Signal]
-    public delegate void Collected();
-
-    [Signal]
-    public delegate void WaterEntered(Vector2 velocity);
-
-    [Signal]
-    public delegate void MovementChanged(string foleyGroup, string foleyKey);
-
     public Vector2 ScreenSize; // Size of the game window.
 
     public bool IsInWater = false;
@@ -183,8 +174,7 @@ public class Fish : RigidBody2D
             HasCollectible = true;
             collectable.Hide();
             collectable.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
-            EmitSignal("HoldingCollectible");
-            EmitSignal("CollectedCollectable", collectable.Type);
+            EmitSignal("HoldingCollectible");            
             EmitSignal(nameof(Collected));
             GD.Print("I've got it!");
         }
