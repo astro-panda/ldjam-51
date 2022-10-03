@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/octo.png-8fe4a32f83a4d29adf7d1e798e83c7e5.stex"
+path="res://.import/backdrop.png-f5739c4798c679f04f3fac9da62731a8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Pixelart/octo.png"
-dest_files=[ "res://.import/octo.png-8fe4a32f83a4d29adf7d1e798e83c7e5.stex" ]
+source_file="res://Images/Pixelart/backdrop.png"
+dest_files=[ "res://.import/backdrop.png-f5739c4798c679f04f3fac9da62731a8.stex" ]
 
 [params]
 
