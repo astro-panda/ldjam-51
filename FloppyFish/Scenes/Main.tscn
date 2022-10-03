@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/Fish.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Images/Pixelart/water.png" type="Texture" id=3]
@@ -56,9 +56,13 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="SegmentShape2D" id=13]
+a = Vector2( 661, -62 )
+b = Vector2( -367, -63 )
+
 [sub_resource type="Curve2D" id=4]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 1433.11, 280, 68.3721, -1.5874, -68.3721, 1.5874, 1057.22, 248, 73.0338, -1.5874, -73.0338, 1.5874, 837.941, 288, 63.7104, 1.5874, -63.7104, -1.5874, 689.148, 264, 52.2306, 2.17059, -52.2306, -2.17059, 493.367, 288, 123.657, -0.353051, -123.657, 0.353051, 305.418, 272, 43.5095, -1.5874, -43.5095, 1.5874, 117.468, 288, 41.9556, 0, -41.9556, 0, -70.481, 248, 0, 0, 0, 0, -446.38, 288 )
+"points": PoolVector2Array( 0, 0, 0, 0, 1435.07, 260, 0, 0, 0, 0, 1277.47, 256, 0, 0, 0, 0, 1244.19, 259, 0, 0, 0, 0, 1179.58, 257, 68.3721, -1.5874, -68.3721, 1.5874, 1057.22, 248, 73.0338, -1.5874, -73.0338, 1.5874, 837.941, 288, 63.7104, 1.5874, -63.7104, -1.5874, 689.148, 264, 52.2306, 2.17059, -52.2306, -2.17059, 493.367, 288, 123.657, -0.353051, -123.657, 0.353051, 305.418, 272, 43.5095, -1.5874, -43.5095, 1.5874, 117.468, 288, 41.9556, 0, -41.9556, 0, -70.481, 248, 0, 0, 0, 0, -446.38, 288 )
 }
 
 [sub_resource type="AtlasTexture" id=10]
@@ -88,6 +92,7 @@ __meta__ = {
 }
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
+CollectGoal = 8
 
 [node name="Air" type="Area2D" parent="."]
 collision_layer = 3
@@ -137,6 +142,15 @@ scale = Vector2( 8, 8 )
 z_index = -2
 frames = SubResource( 7 )
 
+[node name="RiverBottom" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="RiverBottom" type="CollisionShape2D" parent="RiverBottom"]
+position = Vector2( 364, 661 )
+shape = SubResource( 13 )
+one_way_collision_margin = 0.0
+
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 12
 collision_mask = 12
@@ -147,16 +161,22 @@ __meta__ = {
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
 polygon = PoolVector2Array( 0, -300, 0, 600, 1024, 600, 1024, -300, 0, -300, 0, -316, 1040, -316, 1040, 616, -16, 616, -16, -300, 0, -300 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="PlatformSpawnTimer" type="Timer" parent="."]
 
 [node name="PlatformPath" type="Path2D" parent="."]
-position = Vector2( -441, 48 )
+position = Vector2( 71, 47 )
 scale = Vector2( 1.02155, 1 )
 curve = SubResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="PlatformSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 807, 264 )
+position = Vector2( 1535, 305 )
 
 [node name="Fish" parent="." instance=ExtResource( 1 )]
 position = Vector2( 200, 208 )
@@ -166,24 +186,36 @@ position = Vector2( 248, 504 )
 
 [node name="WaterOverlay" type="Node2D" parent="."]
 z_index = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ColorRect" type="ColorRect" parent="WaterOverlay"]
 margin_top = 456.0
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0.223529, 0.541176, 0.72549, 0.27451 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="WaterOverlay"]
 modulate = Color( 1, 1, 1, 0.27451 )
 position = Vector2( 512, 328 )
 scale = Vector2( 8, 8 )
 frames = SubResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Mech" type="AnimatedSprite" parent="."]
 position = Vector2( 96, 504 )
 scale = Vector2( 6, 6 )
 z_index = -1
 frames = SubResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Audio Controller" parent="." instance=ExtResource( 7 )]
 

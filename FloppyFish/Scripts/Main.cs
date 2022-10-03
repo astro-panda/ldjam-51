@@ -76,8 +76,9 @@ public class Main : Node
 	{
 		if(_canSpawnCollectable)
 		{            
-			_collectableSpawnTimer.WaitTime = (float)GD.RandRange(5f, 20f);
+			_collectableSpawnTimer.WaitTime = (float)GD.RandRange(8d, 36d);
 			_collectableSpawnTimer.Start();
+			_canSpawnCollectable = false;
 		}
 	}
 }
