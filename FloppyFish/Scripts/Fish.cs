@@ -21,9 +21,6 @@ public class Fish : RigidBody2D
     [Signal]
     public delegate void SetWaterAirValue(int value);
 
-    [Signal]
-    public delegate void CollectedCollectable(CollectableType type);
-
     public Vector2 ScreenSize; // Size of the game window.
 
     public bool IsInWater = false;
@@ -44,6 +41,8 @@ public class Fish : RigidBody2D
 
     [Export]
     public int AirCountDown = 10;
+
+    public bool HasCollectible = false;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -158,10 +157,11 @@ public class Fish : RigidBody2D
 
     public void OnCollectableEntered(PhysicsBody2D body)
     {
-        if(body.IsInGroup("collectable"))
+        if(body.IsInGroup("collectable") && !HasCollectible)
         {
             var collectable = (Collectable)body;
-            EmitSignal("CollectedCollectable", collectable.Type);
+            CollectedItem = collectable.Type;
+            HasCollectible = true;
             GD.Print("I've got it!");
         }
     }

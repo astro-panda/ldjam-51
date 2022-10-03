@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Fish.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Images/test-water-image.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Collectable.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Audio Controller.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/OctopusMech.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 1440, 300 )
@@ -104,11 +105,15 @@ scale = Vector2( 1.02155, 1 )
 [node name="Fish" parent="." instance=ExtResource( 1 )]
 position = Vector2( 200, 208 )
 
+[node name="OctopusMech" parent="." instance=ExtResource( 8 )]
+position = Vector2( 120, 488 )
+
 [connection signal="body_entered" from="Water" to="Fish" method="OnWaterBodyEntered"]
 [connection signal="body_exited" from="Water" to="Fish" method="OnWaterBodyExited"]
 [connection signal="timeout" from="PlatformSpawnTimer" to="." method="OnPlatformSpawnTimeOut"]
-[connection signal="CollectedCollectable" from="Fish" to="HUD" method="OnCollectableCollected"]
 [connection signal="Die" from="Fish" to="HUD" method="FishDied"]
 [connection signal="SetWaterAirValue" from="Fish" to="HUD" method="SetWaterAir"]
 [connection signal="SuffcationStart" from="Fish" to="HUD" method="OnFishSuffocatingStart"]
 [connection signal="SuffcationStop" from="Fish" to="HUD" method="OnFishSuffocatingStop"]
+[connection signal="CollectedCollectable" from="OctopusMech" to="HUD" method="OnCollectableCollected"]
+[connection signal="body_entered" from="OctopusMech" to="OctopusMech" method="OnOctopusMechBodyEntered"]
