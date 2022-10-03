@@ -28,7 +28,7 @@ public class Fish : RigidBody2D
     public delegate void Collected();
 
     [Signal]
-    public delegate void WaterEntered(Vector2 velocity);
+    public delegate void WaterEntered();
 
     [Signal]
     public delegate void MovementChanged(string foleyGroup, string foleyKey);

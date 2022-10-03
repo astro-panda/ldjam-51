@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/trashplatform.png-5b99e2ffe19d195f16d17fd6d0488e3e.stex"
+path="res://.import/trashPlatform.png-23fb52b0b5a3f6fc5ecffec23fde9dd8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Pixelart/trashplatform.png"
-dest_files=[ "res://.import/trashplatform.png-5b99e2ffe19d195f16d17fd6d0488e3e.stex" ]
+source_file="res://Images/Pixelart/trashPlatform.png"
+dest_files=[ "res://.import/trashPlatform.png-23fb52b0b5a3f6fc5ecffec23fde9dd8.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/test-water-image.png-b53d752d24771d9b7842d191ecc7ef11.stex"
+path="res://.import/trashPlatform.png-23fb52b0b5a3f6fc5ecffec23fde9dd8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/test-water-image.png"
-dest_files=[ "res://.import/test-water-image.png-b53d752d24771d9b7842d191ecc7ef11.stex" ]
+source_file="res://Images/Pixelart/trashPlatform.png"
+dest_files=[ "res://.import/trashPlatform.png-23fb52b0b5a3f6fc5ecffec23fde9dd8.stex" ]
 
 [params]
 

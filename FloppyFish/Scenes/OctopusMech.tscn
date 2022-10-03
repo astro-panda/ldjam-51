@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Images/test-octopus-image.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/OctopusMech.cs" type="Script" id=2]
 [ext_resource path="res://Images/Pixelart/octo.png" type="Texture" id=3]
 
@@ -8,10 +7,12 @@
 radius = 120.266
 
 [sub_resource type="AtlasTexture" id=3]
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 32, 0, 32, 32 )
 
@@ -21,11 +22,6 @@ animations = [ {
 "loop": true,
 "name": "octopus",
 "speed": 2.0
-}, {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "test",
-"speed": 5.0
 } ]
 
 [node name="OctopusMech" type="Area2D"]

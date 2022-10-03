@@ -59,7 +59,7 @@ public class HUD : CanvasLayer
         _waterAirValueLabel.Text = $"{finalValue}";
     }
 
-    private void OnCollectableCollected(CollectableType type)
+    private void OnCollectableCollected()
     {
         _holdingCollectable.Hide();
 

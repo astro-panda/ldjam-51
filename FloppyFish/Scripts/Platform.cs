@@ -1,7 +1,7 @@
 using Godot;
 
 public class Platform : RigidBody2D
-{   
+{
     public bool IsInWater = false;
     [Export]
     public float Damping = -1f;
@@ -10,7 +10,7 @@ public class Platform : RigidBody2D
     [Export]
     public float Speed = 80f;
 
-    public Vector2 WaterFlow = new Vector2((float)-0.946,(float)-0.326);
+    public Vector2 WaterFlow = new Vector2((float)-0.946, (float)-0.326);
 
     private Vector2 _targetPos = Vector2.Zero;
     private PathFollow2D _followPos;
@@ -29,9 +29,9 @@ public class Platform : RigidBody2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        if(_followPos != null)
+        if (_followPos != null)
         {
-            if(_followPos.UnitOffset == 1)
+            if (_followPos.UnitOffset == 1)
             {
                 QueueFree();
             }
@@ -67,17 +67,26 @@ public class Platform : RigidBody2D
         }
     }
 
-    public void Spawn(PathFollow2D followPos)
+    public void Spawn(PathFollow2D followPos, bool canSpawnCollectable)
     {
         _followPos = followPos;
-        Collectable collectable = _collectibleScene.InstanceOrNull<Collectable>();
 
-        if(collectable != null)
+        if (canSpawnCollectable)
         {
-            AnimatedSprite sprite = collectable.GetNode<AnimatedSprite>("AnimatedSprite");
+            Collectable collectable = _collectibleScene.InstanceOrNull<Collectable>();
 
-            collectable.Position = _collectibleSpawn.Position;
-            AddChild(collectable);
+            if (collectable != null)
+            {
+                GD.Print("Spawn Collectable");
+
+                AnimatedSprite sprite = collectable.GetNode<AnimatedSprite>("AnimatedSprite");
+
+                string[] collectabletypes = sprite.Frames.GetAnimationNames();
+
+                sprite.Animation = collectabletypes[GD.Randi() % collectabletypes.Length];
+                collectable.Position = _collectibleSpawn.Position;
+                AddChild(collectable);
+            }
         }
     }
 

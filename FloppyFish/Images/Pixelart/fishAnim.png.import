@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fishSwimWrench.png-44d8977b0f078385e258ed9a61513edb.stex"
+path="res://.import/fishAnim.png-2207aa60b7bac810c04416d3934cff02.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/fishSwimWrench.png"
-dest_files=[ "res://.import/fishSwimWrench.png-44d8977b0f078385e258ed9a61513edb.stex" ]
+source_file="res://Images/Pixelart/fishAnim.png"
+dest_files=[ "res://.import/fishAnim.png-2207aa60b7bac810c04416d3934cff02.stex" ]
 
 [params]
 

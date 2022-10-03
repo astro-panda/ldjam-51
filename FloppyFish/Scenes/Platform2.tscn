@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Images/test-platform2-image.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Platform.cs" type="Script" id=2]
 [ext_resource path="res://Images/Pixelart/trashplatform.png" type="Texture" id=3]
 
@@ -11,6 +10,7 @@ extents = Vector2( 180, 21 )
 extents = Vector2( 168, 21 )
 
 [sub_resource type="AtlasTexture" id=4]
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 128, 0, 128, 64 )
 
@@ -19,11 +19,6 @@ animations = [ {
 "frames": [ SubResource( 4 ) ],
 "loop": true,
 "name": "platform2",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "test",
 "speed": 5.0
 } ]
 
