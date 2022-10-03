@@ -84,6 +84,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 50.0 ]
 }
+CollectGoal = 8
 
 [node name="Water Air" type="Label" parent="."]
 margin_left = 790.0
