@@ -50,3 +50,6 @@ collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollectibleHolder"]
 polygon = PoolVector2Array( -35, -75, 0, -44, 35, -75, 50, -44, -50, -44 )
+
+[node name="CollectibleSpawn" type="Position2D" parent="."]
+position = Vector2( 0, -69 )
