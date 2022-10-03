@@ -156,6 +156,16 @@ public class Fish : RigidBody2D
         PreviousPosition = Position;
     }
 
+    public void OnCollectableEntered(PhysicsBody2D body)
+    {
+        if(body.IsInGroup("collectable"))
+        {
+            var collectable = (Collectable)body;
+            EmitSignal("CollectedCollectable", collectable.Type);
+            GD.Print("I've got it!");
+        }
+    }
+
     public void OnWaterBodyEntered(PhysicsBody2D body)
     {
         if (body.IsInGroup("fish"))
@@ -165,16 +175,6 @@ public class Fish : RigidBody2D
             AirTimer.Stop();
             EmitSignal(nameof(SuffcationStop));
             AirCountDown = 10;
-        }
-    }
-
-    public void OnCollectableEntered(PhysicsBody2D body)
-    {
-        if(body.IsInGroup("collectable"))
-        {
-            var collectable = (Collectable)body;
-            EmitSignal("CollectedCollectable", collectable.Type);
-            GD.Print("I've got it!");
         }
     }
 

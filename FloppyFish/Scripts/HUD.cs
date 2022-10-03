@@ -55,8 +55,10 @@ public class HUD : CanvasLayer
         _waterAirValueLabel.Text = $"{finalValue}";
     }
 
-    private void OnCollectableCollected()
+    private void OnCollectableCollected(CollectableType type)
     {
+        GD.Print($"Added it to count. Type: {type}");
+
         CollectedCount += 1;
 
         _collectCountLabel.Text = $"{Mathf.Clamp(CollectedCount, 0, CollectGoal)}";

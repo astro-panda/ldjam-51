@@ -22,7 +22,6 @@ public class Main : Node
         _fish = GetNode<Fish>("Fish");
         
         StartGame();
-        Connect("CollectableCollected", _fish, "CollectableCollected");
     }
 
     // We can call this on button press later

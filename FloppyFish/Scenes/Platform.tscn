@@ -15,9 +15,8 @@ animations = [ {
 extents = Vector2( 180, 27.4295 )
 
 [node name="Platform" type="RigidBody2D" groups=["platforms"]]
-position = Vector2( 512, 400 )
-collision_layer = 10
-collision_mask = 10
+collision_layer = 3
+collision_mask = 3
 gravity_scale = 0.0
 script = ExtResource( 2 )
 __meta__ = {
