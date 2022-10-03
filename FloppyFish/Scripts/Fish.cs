@@ -70,7 +70,7 @@ public class Fish : RigidBody2D
 		_camera.LimitRight = (int)ScreenSize.x;
 		_camera.LimitBottom = (int)ScreenSize.y;
 		_camera.LimitTop = -212;
-        Hide();
+		ApplyImpulse(Vector2.Zero, new Vector2(300,-300));
     }
 
     public void Start(Vector2 pos)

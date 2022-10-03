@@ -35,7 +35,9 @@ public class Main : Node
     {
         _platformSpawnTimer.Start(2f);
         _collectableSpawnTimer.Start(2f);
-        _fish.Start(GetNode<Position2D>("FishStartLocation").Position);
+		var startPos = GetNode<Position2D>("FishStartLocation");
+		GD.Print($"Start Pos: {startPos}, {startPos.Position}");
+        _fish.Start(startPos.Position);
     }
 
 	public void OnPlatformSpawnTimeOut()
@@ -73,7 +75,7 @@ public class Main : Node
 	{
 		if(_canSpawnCollectable)
 		{            
-			_collectableSpawnTimer.WaitTime = (float)GD.RandRange(8d, 36d);
+			_collectableSpawnTimer.WaitTime = (float)GD.RandRange(8d, 16d);
 			_collectableSpawnTimer.Start();
 			_canSpawnCollectable = false;
 		}

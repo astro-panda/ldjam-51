@@ -88,7 +88,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 50.0 ]
 }
-CollectGoal = 8
 
 [node name="Water Air" type="Label" parent="."]
 margin_left = 790.0
@@ -111,10 +110,10 @@ custom_fonts/font = SubResource( 3 )
 text = "10"
 
 [node name="Collect Counter" type="Label" parent="."]
-margin_left = 194.0
-margin_top = 14.0
-margin_right = 334.0
-margin_bottom = 48.0
+margin_left = 192.0
+margin_top = 16.0
+margin_right = 332.0
+margin_bottom = 50.0
 custom_fonts/font = SubResource( 4 )
 text = "Parts Found"
 
@@ -133,7 +132,7 @@ margin_top = -17.0
 margin_right = -18.0
 margin_bottom = 50.0
 custom_fonts/font = SubResource( 6 )
-text = "/ 20"
+text = "/ 8"
 
 [node name="Blackout Layer" type="ColorRect" parent="."]
 margin_right = 1024.0
@@ -192,8 +191,4 @@ margin_bottom = 46.0
 custom_fonts/font = SubResource( 11 )
 text = "Start Game"
 
-[node name="NewGameTimer" type="Timer" parent="."]
-wait_time = 3.0
-
 [connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]
-[connection signal="timeout" from="NewGameTimer" to="." method="CanPlayNewGame"]

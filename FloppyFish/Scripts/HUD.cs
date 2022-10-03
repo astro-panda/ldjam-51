@@ -11,7 +11,6 @@ public class HUD : CanvasLayer
     private Sprite _holdingCollectable;
 
     private Button _startButton;
-    private Timer _newGameTimer;
     private bool _fishCurrentlySuffocating = false;
 
     [Export]
@@ -32,7 +31,6 @@ public class HUD : CanvasLayer
         _collectCountLabel = GetNode<Label>("Collect Counter").GetNode<Label>("Collect Counter Value");
         _holdingCollectable = GetNode<Sprite>("HasCollectible");
         _startButton = GetNode<Button>("StartButton");
-        _newGameTimer = GetNode<Timer>("NewGameTimer");
         _holdingCollectable.Hide();
     }
 
@@ -82,14 +80,12 @@ public class HUD : CanvasLayer
     public void FishDied()
     {
         _animation.Play("Died");
-        _newGameTimer.Start();
     }
 
     public void FishWin()
     {
         EmitSignal(nameof(AllCollected));
         _animation.Play("Win");
-        _newGameTimer.Start();
     }
 
     public void HoldingCollectible()
@@ -101,11 +97,5 @@ public class HUD : CanvasLayer
     {
         _startButton.Hide();
         EmitSignal("StartGame");
-    }
-
-    public void CanPlayNewGame()
-    {
-        _animation.Seek(0);
-        _startButton.Show();
     }
 }
