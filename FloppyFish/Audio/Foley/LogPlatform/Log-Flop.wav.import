@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Log-Flop.wav-4a13327138c050a4bfe70bab4246200f.sample"
+path="res://.import/Log-Flop.wav-09a323376e90e81f351f75cf0717d96b.sample"
 
 [deps]
 
-source_file="res://Audio/Foley/Log/Log-Flop.wav"
-dest_files=[ "res://.import/Log-Flop.wav-4a13327138c050a4bfe70bab4246200f.sample" ]
+source_file="res://Audio/Foley/LogPlatform/Log-Flop.wav"
+dest_files=[ "res://.import/Log-Flop.wav-09a323376e90e81f351f75cf0717d96b.sample" ]
 
 [params]
 

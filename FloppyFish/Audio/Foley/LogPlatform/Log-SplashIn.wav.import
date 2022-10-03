@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Log-SplashIn.wav-401300f360ceb45e737f25240d6fe873.sample"
+path="res://.import/Log-SplashIn.wav-0d7ef2b772fc0824c237f398a8c3fed5.sample"
 
 [deps]
 
-source_file="res://Audio/Foley/Log/Log-SplashIn.wav"
-dest_files=[ "res://.import/Log-SplashIn.wav-401300f360ceb45e737f25240d6fe873.sample" ]
+source_file="res://Audio/Foley/LogPlatform/Log-SplashIn.wav"
+dest_files=[ "res://.import/Log-SplashIn.wav-0d7ef2b772fc0824c237f398a8c3fed5.sample" ]
 
 [params]
 
