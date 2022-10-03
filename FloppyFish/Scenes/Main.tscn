@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Fish.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Images/test-water-image.png" type="Texture" id=2]
+[ext_resource path="res://Images/Pixelart/water.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Main.cs" type="Script" id=4]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Audio Controller.tscn" type="PackedScene" id=7]
@@ -13,11 +14,32 @@ extents = Vector2( 1440, 300 )
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1440, 236 )
 
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 128, 32 )
+
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "test",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 5 ) ],
+"loop": true,
+"name": "water",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 64, 128, 32 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 6 ) ],
+"loop": true,
+"name": "default",
 "speed": 5.0
 } ]
 
@@ -63,14 +85,17 @@ __meta__ = {
 position = Vector2( 800, 532 )
 shape = SubResource( 1 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Water"]
-position = Vector2( 512, 440 )
-scale = Vector2( 1, 1.5 )
+[node name="WaterSpriteTop" type="AnimatedSprite" parent="Water"]
+position = Vector2( 512, 330 )
+scale = Vector2( 8, 8 )
 frames = SubResource( 2 )
-animation = "test"
-__meta__ = {
-"_edit_group_": true
-}
+animation = "water"
+
+[node name="WaterSpriteBottom" type="AnimatedSprite" parent="Water"]
+position = Vector2( 512, 513 )
+scale = Vector2( 8, 8 )
+z_index = -1
+frames = SubResource( 7 )
 
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 12
@@ -97,19 +122,22 @@ position = Vector2( 1280, 264 )
 position = Vector2( 200, 208 )
 
 [node name="OctopusMech" parent="." instance=ExtResource( 8 )]
-position = Vector2( 120, 488 )
+position = Vector2( 104, 504 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_top = 280.0
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.223529, 0.541176, 0.72549, 0.27451 )
 
 [node name="Audio Controller" parent="." instance=ExtResource( 7 )]
 
 [connection signal="body_entered" from="Water" to="Fish" method="OnWaterBodyEntered"]
 [connection signal="body_exited" from="Water" to="Fish" method="OnWaterBodyExited"]
 [connection signal="timeout" from="PlatformSpawnTimer" to="." method="OnPlatformSpawnTimeOut"]
-[connection signal="Collected" from="Fish" to="Audio Controller" method="OnFoleyTriggered" binds= [ "Fish", "PickUp", Vector2( 0, 0 ) ]]
 [connection signal="Die" from="Fish" to="HUD" method="FishDied"]
-[connection signal="MovementChanged" from="Fish" to="Audio Controller" method="OnFoleyTriggered" binds= [ Vector2( 0, 0 ) ]]
 [connection signal="SetWaterAirValue" from="Fish" to="HUD" method="SetWaterAir"]
 [connection signal="SuffcationStart" from="Fish" to="HUD" method="OnFishSuffocatingStart"]
 [connection signal="SuffcationStop" from="Fish" to="HUD" method="OnFishSuffocatingStop"]
-[connection signal="WaterEntered" from="Fish" to="Audio Controller" method="OnFoleyTriggered" binds= [ "Fish", "SplashInHighVelo", Vector2( 0, 0 ) ]]
-[connection signal="CollectedCollectable" from="OctopusMech" to="Audio Controller" method="OnFoleyTriggered" binds= [ "Fish", "Drop", Vector2( 0, 0 ) ]]
+[connection signal="CollectedCollectable" from="OctopusMech" to="HUD" method="OnCollectableCollected"]
 [connection signal="body_entered" from="OctopusMech" to="OctopusMech" method="OnOctopusMechBodyEntered"]

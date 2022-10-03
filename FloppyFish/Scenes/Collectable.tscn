@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Images/Pixelart/wrench.png" type="Texture" id=1]
+[ext_resource path="res://Images/Pixelart/bolt.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Collectable.cs" type="Script" id=2]
-[ext_resource path="res://Images/Pixelart/bolt.png" type="Texture" id=3]
+[ext_resource path="res://Images/Pixelart/wrench.png" type="Texture" id=3]
 
 [sub_resource type="PhysicsMaterial" id=3]
 bounce = 0.15
@@ -14,14 +14,19 @@ animations = [ {
 "name": "screw",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ) ],
+"frames": [  ],
+"loop": true,
+"name": "screwdriver",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "wrench",
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 32.0
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 22, 31 )
 
 [node name="Collectable" type="RigidBody2D" groups=["collectable"]]
 collision_layer = 10
@@ -35,4 +40,5 @@ frames = SubResource( 1 )
 animation = "wrench"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+position = Vector2( 0, 1 )
+shape = SubResource( 4 )
