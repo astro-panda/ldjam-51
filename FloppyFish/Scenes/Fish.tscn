@@ -1,16 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Images/test-fish-image.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Fish.cs" type="Script" id=2]
-[ext_resource path="res://Images/Pixelart/fish.png" type="Texture" id=3]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "swimming",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "test-image",
@@ -34,7 +28,6 @@ script = ExtResource( 2 )
 scale = Vector2( 2.2, 2.2 )
 z_index = 2
 frames = SubResource( 1 )
-animation = "swimming"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
