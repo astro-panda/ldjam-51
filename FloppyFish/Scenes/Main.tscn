@@ -151,12 +151,12 @@ polygon = PoolVector2Array( 0, -300, 0, 600, 1024, 600, 1024, -300, 0, -300, 0, 
 [node name="PlatformSpawnTimer" type="Timer" parent="."]
 
 [node name="PlatformPath" type="Path2D" parent="."]
-position = Vector2( 32, 48 )
+position = Vector2( -441, 48 )
 scale = Vector2( 1.02155, 1 )
 curve = SubResource( 4 )
 
 [node name="PlatformSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 1280, 264 )
+position = Vector2( 807, 264 )
 
 [node name="Fish" parent="." instance=ExtResource( 1 )]
 position = Vector2( 200, 208 )
