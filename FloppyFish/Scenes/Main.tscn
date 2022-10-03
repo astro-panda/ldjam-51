@@ -2,7 +2,6 @@
 
 [ext_resource path="res://Scenes/Fish.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Images/test-water-image.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Platform.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Main.cs" type="Script" id=4]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Collectable.tscn" type="PackedScene" id=6]
@@ -33,7 +32,6 @@ script = ExtResource( 4 )
 __meta__ = {
 "_editor_description_": "Its the Main Scene. What of it."
 }
-PlatformScene = ExtResource( 3 )
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
 
