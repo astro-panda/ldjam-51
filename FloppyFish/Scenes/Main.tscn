@@ -179,7 +179,6 @@ __meta__ = {
 position = Vector2( 1535, 305 )
 
 [node name="Fish" parent="." instance=ExtResource( 1 )]
-position = Vector2( 200, 208 )
 
 [node name="OctopusMech" parent="." instance=ExtResource( 8 )]
 position = Vector2( 248, 504 )
@@ -201,8 +200,8 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="WaterOverlay"]
 modulate = Color( 1, 1, 1, 0.27451 )
-position = Vector2( 512, 328 )
-scale = Vector2( 8, 8 )
+position = Vector2( 512, 329.5 )
+scale = Vector2( 8, 7.90625 )
 frames = SubResource( 11 )
 __meta__ = {
 "_edit_lock_": true

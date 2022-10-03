@@ -42,6 +42,7 @@ __meta__ = {
 scale = Vector2( 2.2, 2.2 )
 frames = SubResource( 1 )
 frame = 1
+playing = true
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -65,6 +66,23 @@ collision_mask = 10
 rotation = 1.5708
 scale = Vector2( 0.8, 1 )
 shape = SubResource( 3 )
+
+[node name="Camera" type="Camera2D" parent="."]
+current = true
+process_mode = 0
+limit_left = 0
+limit_top = -212
+limit_right = 1024
+limit_bottom = 600
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+drag_margin_left = 0.0
+drag_margin_top = 0.4
+drag_margin_right = 0.0
+drag_margin_bottom = 0.4
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [connection signal="body_entered" from="." to="." method="OnFishBodyEntered"]
 [connection signal="body_exited" from="." to="." method="OnBodyExited"]
