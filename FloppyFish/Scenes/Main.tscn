@@ -116,4 +116,5 @@ position = Vector2( 120, 488 )
 [connection signal="SuffcationStart" from="Fish" to="HUD" method="OnFishSuffocatingStart"]
 [connection signal="SuffcationStop" from="Fish" to="HUD" method="OnFishSuffocatingStop"]
 [connection signal="WaterEntered" from="Fish" to="Audio Controller" method="OnFoleyTriggered" binds= [ "Fish", "SplashInHighVelo", Vector2( 0, 0 ) ]]
+[connection signal="CollectedCollectable" from="OctopusMech" to="Audio Controller" method="OnFoleyTriggered" binds= [ "Fish", "Drop", Vector2( 0, 0 ) ]]
 [connection signal="body_entered" from="OctopusMech" to="OctopusMech" method="OnOctopusMechBodyEntered"]

@@ -7,7 +7,7 @@
 animations = [ {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "test-image",
+"name": "default",
 "speed": 5.0
 } ]
 
@@ -28,6 +28,7 @@ script = ExtResource( 2 )
 scale = Vector2( 2.2, 2.2 )
 z_index = 2
 frames = SubResource( 1 )
+playing = true
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
