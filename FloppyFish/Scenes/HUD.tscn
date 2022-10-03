@@ -42,7 +42,7 @@ tracks/0/loop_wrap = false
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 9.9 ),
+"times": PoolRealArray( 0.1, 9.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0.0980392, 0.00392157, 0.00392157, 0 ), Color( 0.0980392, 0.00392157, 0.00392157, 1 ) ]
@@ -132,7 +132,7 @@ text = "/ 20"
 [node name="Blackout Layer" type="ColorRect" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
-color = Color( 0.0980392, 0.00392157, 0.00392157, 0 )
+color = Color( 0.0980392, 0.00392157, 0.00392157, 0.00072375 )
 __meta__ = {
 "_edit_lock_": true
 }

@@ -32,6 +32,7 @@ public class HUD : CanvasLayer
     public void OnFishSuffocatingStart()
     {
         _fishCurrentlySuffocating = true;
+        _animation.PlaybackSpeed = 1;
         _animation.Play("Blackout");
     }
 
@@ -39,6 +40,7 @@ public class HUD : CanvasLayer
     {
         if (_fishCurrentlySuffocating)
         {
+            _animation.PlaybackSpeed = 5;
             _animation.PlayBackwards("Blackout");
             _animation.Seek(_animation.CurrentAnimationPosition);
             _fishCurrentlySuffocating = false;
