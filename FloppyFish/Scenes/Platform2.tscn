@@ -25,8 +25,9 @@ animations = [ {
 [node name="Platform2" type="RigidBody2D" groups=["platforms", "trash"]]
 collision_layer = 3
 collision_mask = 3
-mass = 15.0
 script = ExtResource( 2 )
+Damping = -0.5
+PullForce = 1.0
 
 [node name="Level1" type="CollisionShape2D" parent="."]
 position = Vector2( 4, -24 )

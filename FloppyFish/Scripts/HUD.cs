@@ -12,7 +12,7 @@ public class HUD : CanvasLayer
     private bool _fishCurrentlySuffocating = false;
 
     [Export]
-    public uint CollectGoal = 20;
+    public uint CollectGoal {get;set;} = 8;
 
     private uint CollectedCount = 0;
 

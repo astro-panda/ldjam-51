@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Audio/forest-with-small-river-birds-and-nature-field-recording-6735.mp3" type="AudioStream" id=1]
 [ext_resource path="res://Scripts/AudioController.cs" type="Script" id=2]
@@ -27,6 +27,7 @@ bus = "BackgMusic"
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 autoplay = true
+bus = "BackgMusic"
 
 [node name="FishFoley" type="AudioStreamPlayer" parent="."]
 pause_mode = 1

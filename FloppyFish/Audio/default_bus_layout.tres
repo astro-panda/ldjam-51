@@ -47,5 +47,5 @@ bus/7/name = "BackgMusic"
 bus/7/solo = false
 bus/7/mute = false
 bus/7/bypass_fx = false
-bus/7/volume_db = -80.0
+bus/7/volume_db = -11.952
 bus/7/send = "Background"

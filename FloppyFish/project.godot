@@ -18,11 +18,6 @@ config/icon="res://icon.png"
 
 default_bus_layout="res://Audio/default_bus_layout.tres"
 
-[display]
-
-window/stretch/mode="2d"
-window/stretch/aspect="keep"
-
 [editor_plugins]
 
 enabled=PoolStringArray(  )
