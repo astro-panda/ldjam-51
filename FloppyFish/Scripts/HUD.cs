@@ -7,6 +7,8 @@ public class HUD : CanvasLayer
     private AnimationPlayer _animation;
     private Label _waterAirValueLabel;
     private Label _collectCountLabel;
+
+    private Sprite _holdingCollectable;
     private bool _fishCurrentlySuffocating = false;
 
     [Export]
@@ -22,6 +24,8 @@ public class HUD : CanvasLayer
         _animation = GetNode<AnimationPlayer>("Animation");
         _waterAirValueLabel = GetNode<Label>("Water Air").GetNode<Label>("Water Air Value");
         _collectCountLabel = GetNode<Label>("Collect Counter").GetNode<Label>("Collect Counter Value");
+        _holdingCollectable = GetNode<Sprite>("HasCollectible");
+        _holdingCollectable.Hide();
     }
 
     public void OnSetWaterAirValue(int value)
@@ -57,7 +61,7 @@ public class HUD : CanvasLayer
 
     private void OnCollectableCollected(CollectableType type)
     {
-        GD.Print($"Added it to count. Type: {type}");
+        _holdingCollectable.Hide();
 
         CollectedCount += 1;
 
@@ -78,4 +82,8 @@ public class HUD : CanvasLayer
         _animation.Play("Win");
     }
 
+    public void HoldingCollectible()
+    {
+        _holdingCollectable.Show();
+    }
 }

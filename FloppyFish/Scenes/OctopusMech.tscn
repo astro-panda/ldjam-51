@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Images/test-octopus-image.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/OctopusMech.cs" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 120.266
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "test",
+"speed": 5.0
+} ]
+
+[node name="OctopusMech" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.25, 0.25 )
+frames = SubResource( 2 )
+animation = "test"

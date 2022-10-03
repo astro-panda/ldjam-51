@@ -22,15 +22,13 @@ public class Fish : RigidBody2D
     public delegate void SetWaterAirValue(int value);
 
     [Signal]
-    public delegate void CollectedCollectable(CollectableType type);
+    public delegate void HoldingCollectible();
 
     public Vector2 ScreenSize; // Size of the game window.
 
     public bool IsInWater = false;
 
     public Vector2 WaterFlow = new Vector2((float)-0.946,(float)-0.326);
-
-    public Vector2 PreviousPosition;
 
     public bool canFlop = true;
 
@@ -40,16 +38,17 @@ public class Fish : RigidBody2D
 
     public Timer InvFlopTimer;
 
-    public float LocChange = 0.0f;
-
     [Export]
     public int AirCountDown = 10;
+
+    public bool HasCollectible = false;
+
+    public bool OnPlatform = false;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         ScreenSize = GetViewportRect().Size;
-        PreviousPosition = Position;
         GetNode<Timer>("FlopCooldownTimer").Start();
         AirTimer = GetNode<Timer>("AirTimer");
         InvFlopTimer = GetNode<Timer>("InvoluntaryFlopTimer");
@@ -112,9 +111,7 @@ public class Fish : RigidBody2D
             ApplyCentralImpulse(WaterFlow);
         }
 
-        LocChange = Math.Abs(Position.DistanceTo(PreviousPosition));
-
-        if (!IsInWater && LocChange < 1 && canFlop)
+        if (!IsInWater && OnPlatform && canFlop)
         {
             var flopDirection = 0.0;
             var flopRot = 0f;
@@ -148,21 +145,30 @@ public class Fish : RigidBody2D
 
                 ApplyTorqueImpulse(flopRot);
                 ApplyCentralImpulse(flopVector);
-
+                OnPlatform = false;
                 canFlop = false;
             }
         }
-
-        PreviousPosition = Position;
     }
 
-    public void OnCollectableEntered(PhysicsBody2D body)
+    public void OnFishBodyEntered(PhysicsBody2D body)
     {
-        if(body.IsInGroup("collectable"))
+        if(body.IsInGroup("collectable") && !HasCollectible)
         {
             var collectable = (Collectable)body;
-            EmitSignal("CollectedCollectable", collectable.Type);
-            GD.Print("I've got it!");
+            CollectedItem = collectable.Type;
+            HasCollectible = true;
+            collectable.Hide();
+            collectable.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
+            EmitSignal("HoldingCollectible");
+        }
+
+        if (body.IsInGroup("platforms"))
+        {
+            if (Position.y < body.Position.y)
+            {
+                OnPlatform = true;
+            }
         }
     }
 
@@ -213,12 +219,13 @@ public class Fish : RigidBody2D
 
     public void InvoluntaryFlopTimeout()
     {
-        if (!IsInWater && LocChange < 1)
+        if (!IsInWater && OnPlatform)
         {
             var involuntaryFlopDirection = GD.RandRange((Mathf.Pi * (1/(float)3)), (Mathf.Pi * (2/(float)3)));
             var invFlopVector = new Vector2(200 * Mathf.Cos(involuntaryFlopDirection != 0 ?  (float)involuntaryFlopDirection : (float)(Mathf.Pi / 2)),
                                             -200 * Mathf.Sin((float)involuntaryFlopDirection));
             ApplyCentralImpulse(invFlopVector);
+            OnPlatform = false;
         }
 
         InvFlopTimer.WaitTime = (float)GD.RandRange(0.5, 2.0);
