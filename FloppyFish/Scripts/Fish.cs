@@ -25,7 +25,13 @@ public class Fish : RigidBody2D
     public delegate void HoldingCollectible();
 
     [Signal]
+    public delegate void Collected();
+
+    [Signal]
     public delegate void WaterEntered(Vector2 velocity);
+
+    [Signal]
+    public delegate void MovementChanged(string foleyGroup, string foleyKey);
 
     public Vector2 ScreenSize; // Size of the game window.
 
@@ -47,6 +53,7 @@ public class Fish : RigidBody2D
     public bool HasCollectible = false;
 
     public bool OnPlatform = false;
+    private string CurrentPlatformKey;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -149,6 +156,10 @@ public class Fish : RigidBody2D
                 ApplyTorqueImpulse(flopRot);
                 ApplyCentralImpulse(flopVector);
                 OnPlatform = false;
+                
+                if(!string.IsNullOrWhiteSpace(CurrentPlatformKey))
+                    EmitSignal(nameof(MovementChanged), CurrentPlatformKey, "MoveFlop");
+
                 canFlop = false;
             }
         }
@@ -164,6 +175,9 @@ public class Fish : RigidBody2D
             collectable.Hide();
             collectable.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
             EmitSignal("HoldingCollectible");
+            EmitSignal("CollectedCollectable", collectable.Type);
+            EmitSignal(nameof(Collected));
+            GD.Print("I've got it!");
         }
 
         if (body.IsInGroup("platforms"))
@@ -171,8 +185,21 @@ public class Fish : RigidBody2D
             if (Position.y < body.Position.y)
             {
                 OnPlatform = true;
-            }
+            }            
         }
+
+        GD.Print("Hit");
+        GD.Print(string.Join(", ", body.GetGroups()));
+
+        if(body.IsInGroup("log"))
+        {
+            CurrentPlatformKey = "Log";
+        }
+        else if (body.IsInGroup("trash"))
+        {
+            CurrentPlatformKey = "Trash";
+        }        
+
     }
 
     public void OnWaterBodyEntered(PhysicsBody2D body)
@@ -230,14 +257,22 @@ public class Fish : RigidBody2D
                                             -200 * Mathf.Sin((float)involuntaryFlopDirection));
             ApplyCentralImpulse(invFlopVector);
             OnPlatform = false;
+
+            if(!string.IsNullOrWhiteSpace(CurrentPlatformKey))
+                EmitSignal(nameof(MovementChanged), CurrentPlatformKey, "Flop");
         }
 
         InvFlopTimer.WaitTime = (float)GD.RandRange(0.5, 2.0);
         InvFlopTimer.Start();
     }
 
-    public override void _Draw()
+    
+
+    public void OnBodyExited(PhysicsBody2D node)
     {
-        // DrawLine(Position, vectorToDraw, Color.ColorN("Red", 1));
+        GD.Print("Exit");
+
+        if(node.IsInGroup("log") || node.IsInGroup("trash"))        
+            CurrentPlatformKey = null;
     }
 }

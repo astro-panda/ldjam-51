@@ -22,6 +22,7 @@ script = ExtResource( 2 )
 [node name="Background" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 autoplay = true
+bus = "BackgMusic"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )

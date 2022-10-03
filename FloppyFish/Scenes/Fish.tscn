@@ -60,6 +60,7 @@ scale = Vector2( 0.8, 1 )
 shape = SubResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="OnFishBodyEntered"]
+[connection signal="body_exited" from="." to="." method="OnBodyExited"]
 [connection signal="timeout" from="FlopCooldownTimer" to="." method="OnFlopCooldownTimerTimeout"]
 [connection signal="timeout" from="AirTimer" to="." method="OnAirTimerTimeout"]
 [connection signal="timeout" from="InvoluntaryFlopTimer" to="." method="InvoluntaryFlopTimeout"]

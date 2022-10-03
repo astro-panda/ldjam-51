@@ -8,10 +8,7 @@ public class Collectable : RigidBody2D
 
     [Export]
     public CollectableType Type = CollectableType.Empty;
-    private AnimatedSprite _spriteAnim;
-
-    [Signal]
-    public delegate void Collected();
+    private AnimatedSprite _spriteAnim;   
 
     public override void _Ready()
     {
@@ -21,15 +18,15 @@ public class Collectable : RigidBody2D
    
     public override void _Process(float delta)
     {
-        if(Input.IsActionJustPressed("action"))
-            EmitSignal(nameof(Collected));
+        
     }
 
     public void OnBodyEntered(PhysicsBody2D body)
     {
-        if(body.IsInGroup("Fish"))
+        if(body.IsInGroup("fish"))
         {
-            EmitSignal("CollectableCollected", Type);
+            GD.Print("Collected collectable");
+            EmitSignal("CollectableCollected", Type);            
         }
     }
 
