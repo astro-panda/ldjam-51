@@ -11,6 +11,10 @@ public class Main : Node
     private Position2D _platformSpawnPos;
     private Timer _platformSpawnTimer;
 
+    private Timer _collectableSpawnTimer;
+
+    private bool _canSpawnCollectable = false;
+
     private Fish _fish;
     private List<CollectableType> _collectedCollectables;
     public override void _Ready()
@@ -18,6 +22,7 @@ public class Main : Node
         GD.Randomize();
         _platformSpawnPos = GetNode<Position2D>("PlatformSpawnPosition");
         _platformSpawnTimer = GetNode<Timer>("PlatformSpawnTimer");
+        _collectableSpawnTimer = GetNode<Timer>("CollectableSpawnTimer");
         _fish = GetNode<Fish>("Fish");
 
         PlatformScenes = new List<PackedScene>(){
@@ -32,6 +37,7 @@ public class Main : Node
     public void StartGame()
     {
         _platformSpawnTimer.Start(2f);
+        _collectableSpawnTimer.Start(2f);
         _fish.Show();
     }
 
@@ -51,11 +57,27 @@ public class Main : Node
         path.Loop = false;
         var parent = GetNode<Path2D>("PlatformPath");
         parent.AddChild(path);
-        platform.Spawn(path);
+
+        platform.Spawn(path, _canSpawnCollectable);
+        ResetCollectableSpawnTimer();
     }
 
     public void CollectableCollected(CollectableType type)
     {
         GD.Print($"I collected a {nameof(type)}");
+    }
+
+    public void AllowSpawnCollectable()
+    {
+        _canSpawnCollectable = true;
+    }
+
+    private void ResetCollectableSpawnTimer()
+    {
+        if(_canSpawnCollectable)
+        {            
+            _collectableSpawnTimer.WaitTime = (float)GD.RandRange(5f, 20f);
+            _collectableSpawnTimer.Start();
+        }
     }
 }

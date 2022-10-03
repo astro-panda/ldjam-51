@@ -5,6 +5,7 @@
 [ext_resource path="res://Images/Pixelart/water.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Main.cs" type="Script" id=4]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Collectable.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Audio Controller.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/OctopusMech.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Images/Pixelart/backdrop.png" type="Texture" id=9]
@@ -184,6 +185,11 @@ frames = SubResource( 9 )
 
 [node name="Audio Controller" parent="." instance=ExtResource( 7 )]
 
+[node name="CollectableSpawnTimer" type="Timer" parent="."]
+
+[node name="Collectable" parent="." instance=ExtResource( 6 )]
+position = Vector2( 658, 494 )
+
 [connection signal="body_entered" from="Water" to="Fish" method="OnWaterBodyEntered"]
 [connection signal="body_exited" from="Water" to="Fish" method="OnWaterBodyExited"]
 [connection signal="timeout" from="PlatformSpawnTimer" to="." method="OnPlatformSpawnTimeOut"]
@@ -193,3 +199,4 @@ frames = SubResource( 9 )
 [connection signal="SuffcationStop" from="Fish" to="HUD" method="OnFishSuffocatingStop"]
 [connection signal="CollectedCollectable" from="OctopusMech" to="HUD" method="OnCollectableCollected"]
 [connection signal="body_entered" from="OctopusMech" to="OctopusMech" method="OnOctopusMechBodyEntered"]
+[connection signal="timeout" from="CollectableSpawnTimer" to="." method="AllowSpawnCollectable"]
