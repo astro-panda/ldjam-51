@@ -151,12 +151,12 @@ polygon = PoolVector2Array( 0, -300, 0, 600, 1024, 600, 1024, -300, 0, -300, 0, 
 [node name="PlatformSpawnTimer" type="Timer" parent="."]
 
 [node name="PlatformPath" type="Path2D" parent="."]
-position = Vector2( 32, 48 )
+position = Vector2( -441, 48 )
 scale = Vector2( 1.02155, 1 )
 curve = SubResource( 4 )
 
 [node name="PlatformSpawnPosition" type="Position2D" parent="."]
-position = Vector2( 1280, 264 )
+position = Vector2( 807, 264 )
 
 [node name="Fish" parent="." instance=ExtResource( 1 )]
 position = Vector2( 200, 208 )
@@ -195,5 +195,13 @@ position = Vector2( 658, 494 )
 [connection signal="body_entered" from="Water" to="Fish" method="OnWaterBodyEntered"]
 [connection signal="body_exited" from="Water" to="Fish" method="OnWaterBodyExited"]
 [connection signal="timeout" from="PlatformSpawnTimer" to="." method="OnPlatformSpawnTimeOut"]
+[connection signal="Collected" from="Fish" to="Audio Controller" method="OnFoleyTriggered" binds= [ "Fish", "PickUp", Vector2( 0, 0 ) ]]
+[connection signal="MovementChanged" from="Fish" to="Audio Controller" method="OnFoleyTriggered" binds= [ Vector2( 0, 0 ) ]]
+[connection signal="SetWaterAirValue" from="Fish" to="HUD" method="OnSetWaterAirValue"]
+[connection signal="SuffcationStart" from="Fish" to="HUD" method="OnFishSuffocatingStart"]
+[connection signal="SuffcationStop" from="Fish" to="HUD" method="OnFishSuffocatingStop"]
+[connection signal="WaterEntered" from="Fish" to="Audio Controller" method="OnFoleyTriggered" binds= [ "Fish", "SplashInHighVelo", Vector2( 0, 0 ) ]]
+[connection signal="CollectedCollectable" from="OctopusMech" to="HUD" method="OnCollectableCollected"]
+[connection signal="CollectedCollectable" from="OctopusMech" to="Audio Controller" method="OnFoleyTriggered" binds= [ "Fish", "Drop", Vector2( 0, 0 ) ]]
 [connection signal="body_entered" from="OctopusMech" to="OctopusMech" method="OnOctopusMechBodyEntered"]
 [connection signal="timeout" from="CollectableSpawnTimer" to="." method="AllowSpawnCollectable"]
