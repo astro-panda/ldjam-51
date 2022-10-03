@@ -97,7 +97,7 @@ position = Vector2( 1280, 264 )
 [node name="Audio Controller" parent="." instance=ExtResource( 7 )]
 
 [node name="Collectable" parent="." instance=ExtResource( 6 )]
-position = Vector2( 848, 532 )
+position = Vector2( 856, 512 )
 scale = Vector2( 1.02155, 1 )
 
 [node name="Fish" parent="." instance=ExtResource( 1 )]

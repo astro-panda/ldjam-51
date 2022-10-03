@@ -1,16 +1,26 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Images/test-platform2-image.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Platform.cs" type="Script" id=2]
+[ext_resource path="res://Images/Pixelart/trash-platform.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 184, 21 )
+extents = Vector2( 180, 21 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 184, 21 )
+extents = Vector2( 168, 21 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 0, 128, 64 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "platform2",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "test",
@@ -24,19 +34,28 @@ mass = 15.0
 script = ExtResource( 2 )
 
 [node name="Level1" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -24 )
+position = Vector2( 4, -24 )
 shape = SubResource( 1 )
 one_way_collision = true
 one_way_collision_margin = 128.0
 
 [node name="Level2" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -130 )
+position = Vector2( -15, -135 )
+rotation = -0.0872665
 shape = SubResource( 3 )
 one_way_collision = true
 one_way_collision_margin = 128.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -80 )
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 3, 3 )
 frames = SubResource( 2 )
-animation = "test"
+animation = "platform2"
+
+[node name="CollectibleHolder" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollectibleHolder"]
+position = Vector2( 16, -120 )
+polygon = PoolVector2Array( -35, -75, 0, -44, 35, -75, 50, -44, -51, -35 )
