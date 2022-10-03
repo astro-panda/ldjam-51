@@ -128,21 +128,21 @@ public class Fish : RigidBody2D
 
             var moving = false;
 
-            if (Input.IsActionPressed("move_right"))
+            if (Input.IsActionJustPressed("move_right"))
             {
                 flopDirection = GD.RandRange((Mathf.Pi / 6), (Mathf.Pi / 3));
                 flopRot = 5000.0f;
                 moving = true;
             }
 
-            if (Input.IsActionPressed("move_left"))
+            if (Input.IsActionJustPressed("move_left"))
             {
                 flopDirection = GD.RandRange((Mathf.Pi * (2/(float)3)), (Mathf.Pi * (5/(float)6)));
                 flopRot = -5000.0f;
                 moving = true;
             }
 
-            if (Input.IsActionPressed("move_up"))
+            if (Input.IsActionJustPressed("move_up"))
             {
                 flopDirection = GD.RandRange((Mathf.Pi * (1/(float)3)), (Mathf.Pi * (2/(float)3)));
                 moving = true;
@@ -176,7 +176,6 @@ public class Fish : RigidBody2D
             collectable.GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
             EmitSignal("HoldingCollectible");            
             EmitSignal(nameof(Collected));
-            GD.Print("I've got it!");
         }
 
         if (body.IsInGroup("platforms"))

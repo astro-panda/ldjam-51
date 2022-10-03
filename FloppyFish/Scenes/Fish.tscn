@@ -20,6 +20,7 @@ radius = 22.0
 height = 24.0
 
 [node name="Fish" type="RigidBody2D" groups=["fish"]]
+z_index = 1
 collision_layer = 5
 collision_mask = 5
 script = ExtResource( 2 )
