@@ -92,7 +92,6 @@ __meta__ = {
 }
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
-CollectGoal = 8
 
 [node name="Air" type="Area2D" parent="."]
 collision_layer = 3
