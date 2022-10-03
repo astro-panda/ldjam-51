@@ -7,11 +7,11 @@
 [ext_resource path="res://Audio/Foley/Fish/Fish-PickUp.wav" type="AudioStream" id=5]
 [ext_resource path="res://Audio/Foley/Fish/Fish-Drop.wav" type="AudioStream" id=6]
 [ext_resource path="res://Audio/Foley/Collectible/Foley-LandOnRiverBottom.wav" type="AudioStream" id=7]
-[ext_resource path="res://Audio/Foley/Log/Log-Flop.wav" type="AudioStream" id=8]
+[ext_resource path="res://Audio/Foley/LogPlatform/Log-SplashIn.wav" type="AudioStream" id=8]
 [ext_resource path="res://Audio/Foley/Trash/Trash-Flop.wav" type="AudioStream" id=9]
-[ext_resource path="res://Audio/Foley/Log/Log-MoveFlop.wav" type="AudioStream" id=10]
+[ext_resource path="res://Audio/Foley/LogPlatform/Log-MoveFlop.wav" type="AudioStream" id=10]
 [ext_resource path="res://Audio/Foley/Trash/Trash-MoveFlop.wav" type="AudioStream" id=11]
-[ext_resource path="res://Audio/Foley/Log/Log-SplashIn.wav" type="AudioStream" id=12]
+[ext_resource path="res://Audio/Foley/LogPlatform/Log-Flop.wav" type="AudioStream" id=12]
 [ext_resource path="res://Audio/Foley/Trash/Trash-SplashIn.wav" type="AudioStream" id=13]
 [ext_resource path="res://Audio/Foley/Fish/Fish-SplashInHighVelo.wav" type="AudioStream" id=14]
 [ext_resource path="res://Audio/Foley/Fish/Fish-SplashInLowVelo.wav" type="AudioStream" id=15]
@@ -47,9 +47,9 @@ script = ExtResource( 3 )
 Streams = {
 "Bob1": null,
 "Bob2": null,
-"Flop": ExtResource( 8 ),
+"Flop": ExtResource( 12 ),
 "MoveFlop": ExtResource( 10 ),
-"SplashIn": ExtResource( 12 )
+"SplashIn": ExtResource( 8 )
 }
 
 [node name="TrashFoley" type="AudioStreamPlayer" parent="."]
