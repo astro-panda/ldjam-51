@@ -24,22 +24,21 @@ public class Main : Node
 		_platformSpawnTimer = GetNode<Timer>("PlatformSpawnTimer");
 		_collectableSpawnTimer = GetNode<Timer>("CollectableSpawnTimer");
 		_fish = GetNode<Fish>("Fish");
+        PlatformScenes = new List<PackedScene>(){
+            GD.Load<PackedScene>("res://Scenes/Platform.tscn"),
+            GD.Load<PackedScene>("res://Scenes/Platform2.tscn")
+        };
+    }
 
-		PlatformScenes = new List<PackedScene>(){
-			GD.Load<PackedScene>("res://Scenes/Platform.tscn"),
-			GD.Load<PackedScene>("res://Scenes/Platform2.tscn")
-		};
-		
-		StartGame();
-	}
-
-	// We can call this on button press later
-	public void StartGame()
-	{
-		_platformSpawnTimer.Start(2f);
-		_collectableSpawnTimer.Start(2f);
-		_fish.Show();
-	}
+    // We can call this on button press later
+    public void StartGame()
+    {
+        _platformSpawnTimer.Start(2f);
+        _collectableSpawnTimer.Start(2f);
+		var startPos = GetNode<Position2D>("FishStartLocation");
+		GD.Print($"Start Pos: {startPos}, {startPos.Position}");
+        _fish.Start(startPos.Position);
+    }
 
 	public void OnPlatformSpawnTimeOut()
 	{
@@ -76,7 +75,7 @@ public class Main : Node
 	{
 		if(_canSpawnCollectable)
 		{            
-			_collectableSpawnTimer.WaitTime = (float)GD.RandRange(8d, 36d);
+			_collectableSpawnTimer.WaitTime = (float)GD.RandRange(8d, 16d);
 			_collectableSpawnTimer.Start();
 			_canSpawnCollectable = false;
 		}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/HUD.cs" type="Script" id=1]
 [ext_resource path="res://Fonts/Red_Hat_Display/static/RedHatDisplay-Black.ttf" type="DynamicFontData" id=2]
@@ -15,7 +15,7 @@ size = 50
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 25
+size = 24
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFontData" id=5]
@@ -79,12 +79,15 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
+[sub_resource type="DynamicFont" id=11]
+size = 64
+font_data = ExtResource( 2 )
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 50.0 ]
 }
-CollectGoal = 8
 
 [node name="Water Air" type="Label" parent="."]
 margin_left = 790.0
@@ -107,10 +110,10 @@ custom_fonts/font = SubResource( 3 )
 text = "10"
 
 [node name="Collect Counter" type="Label" parent="."]
-margin_left = 194.0
-margin_top = 14.0
-margin_right = 334.0
-margin_bottom = 48.0
+margin_left = 192.0
+margin_top = 16.0
+margin_right = 332.0
+margin_bottom = 50.0
 custom_fonts/font = SubResource( 4 )
 text = "Parts Found"
 
@@ -129,7 +132,7 @@ margin_top = -17.0
 margin_right = -18.0
 margin_bottom = 50.0
 custom_fonts/font = SubResource( 6 )
-text = "/ 20"
+text = "/ 8"
 
 [node name="Blackout Layer" type="ColorRect" parent="."]
 margin_right = 1024.0
@@ -175,3 +178,17 @@ anims/Win = SubResource( 9 )
 position = Vector2( 372, 34 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 4 )
+
+[node name="StartButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -186.5
+margin_top = -46.0
+margin_right = 186.5
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 11 )
+text = "Start Game"
+
+[connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]

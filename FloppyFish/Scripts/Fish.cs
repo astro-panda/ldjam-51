@@ -57,20 +57,27 @@ public class Fish : RigidBody2D
 	public bool OnPlatform = false;
 	private string CurrentPlatformKey;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		ScreenSize = GetViewportRect().Size;
-		GetNode<Timer>("FlopCooldownTimer").Start();
-		AirTimer = GetNode<Timer>("AirTimer");
-		InvFlopTimer = GetNode<Timer>("InvoluntaryFlopTimer");
-		InvFlopTimer.Start();
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+    {
+        ScreenSize = GetViewportRect().Size;
+        GetNode<Timer>("FlopCooldownTimer").Start();
+        AirTimer = GetNode<Timer>("AirTimer");
+        InvFlopTimer = GetNode<Timer>("InvoluntaryFlopTimer");
+        InvFlopTimer.Start();
 		_camera = GetNode<Camera2D>("Camera");
 		_camera.LimitLeft = 0;
 		_camera.LimitRight = (int)ScreenSize.x;
 		_camera.LimitBottom = (int)ScreenSize.y;
 		_camera.LimitTop = -212;
-	}
+		ApplyImpulse(Vector2.Zero, new Vector2(300,-300));
+    }
+
+    public void Start(Vector2 pos)
+    {
+        Position = pos;
+        Show();
+    }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
