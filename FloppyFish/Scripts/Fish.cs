@@ -33,6 +33,9 @@ public class Fish : RigidBody2D
     [Signal]
     public delegate void MovementChanged(string foleyGroup, string foleyKey);
 
+    [Signal]
+    public delegate void WaterEntererd(Vector2 velocity);
+
     public Vector2 ScreenSize; // Size of the game window.
 
     public bool IsInWater = false;
