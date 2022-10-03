@@ -26,6 +26,8 @@ public class AudioController : Node
 
     public void OnFoleyTriggered(string foleyGroup, string foleyKey, Vector2 actionVelocity)
     {
+        GD.Print($"Foley {foleyGroup}-{foleyKey}");
+
         if(FoleyControllers.TryGetValue(foleyGroup, out OneShotFoleyController controller))
         {
             controller.Play(foleyKey, actionVelocity);
