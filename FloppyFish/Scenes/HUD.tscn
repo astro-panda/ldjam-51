@@ -177,6 +177,7 @@ anims/Win = SubResource( 9 )
 [node name="HasCollectible" type="Sprite" parent="."]
 position = Vector2( 372, 34 )
 scale = Vector2( 1.5, 1.5 )
+z_index = -4
 texture = ExtResource( 4 )
 
 [node name="StartButton" type="Button" parent="."]

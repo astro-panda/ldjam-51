@@ -80,6 +80,7 @@ public class HUD : CanvasLayer
     public void FishDied()
     {
         _animation.Play("Died");
+        _holdingCollectable.Hide();
     }
 
     public void FishWin()
