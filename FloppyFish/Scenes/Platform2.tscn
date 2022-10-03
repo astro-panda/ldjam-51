@@ -10,7 +10,6 @@ extents = Vector2( 180, 21 )
 extents = Vector2( 168, 21 )
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 128, 0, 128, 64 )
 

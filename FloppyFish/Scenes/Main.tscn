@@ -178,6 +178,7 @@ __meta__ = {
 position = Vector2( 1535, 305 )
 
 [node name="Fish" parent="." instance=ExtResource( 1 )]
+position = Vector2( 50, -274 )
 
 [node name="OctopusMech" parent="." instance=ExtResource( 8 )]
 position = Vector2( 248, 504 )
@@ -222,6 +223,10 @@ __meta__ = {
 [node name="Collectable" parent="." instance=ExtResource( 6 )]
 position = Vector2( 658, 494 )
 
+[node name="FishStartLocation" type="Position2D" parent="."]
+position = Vector2( 168, 408 )
+
+[connection signal="StartGame" from="HUD" to="." method="StartGame"]
 [connection signal="body_entered" from="Water" to="Fish" method="OnWaterBodyEntered"]
 [connection signal="body_exited" from="Water" to="Fish" method="OnWaterBodyExited"]
 [connection signal="timeout" from="PlatformSpawnTimer" to="." method="OnPlatformSpawnTimeOut"]

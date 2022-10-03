@@ -4,7 +4,6 @@
 [ext_resource path="res://Images/Pixelart/trashplatform.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=2]
-flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 128, 64 )
 

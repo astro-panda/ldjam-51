@@ -9,6 +9,9 @@ public class HUD : CanvasLayer
     private Label _collectCountLabel;
 
     private Sprite _holdingCollectable;
+
+    private Button _startButton;
+    private Timer _newGameTimer;
     private bool _fishCurrentlySuffocating = false;
 
     [Export]
@@ -18,6 +21,9 @@ public class HUD : CanvasLayer
 
     [Signal]
     public delegate void AllCollected();
+
+    [Signal]
+    public delegate void StartGame();
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -25,6 +31,8 @@ public class HUD : CanvasLayer
         _waterAirValueLabel = GetNode<Label>("Water Air").GetNode<Label>("Water Air Value");
         _collectCountLabel = GetNode<Label>("Collect Counter").GetNode<Label>("Collect Counter Value");
         _holdingCollectable = GetNode<Sprite>("HasCollectible");
+        _startButton = GetNode<Button>("StartButton");
+        _newGameTimer = GetNode<Timer>("NewGameTimer");
         _holdingCollectable.Hide();
     }
 
@@ -74,16 +82,30 @@ public class HUD : CanvasLayer
     public void FishDied()
     {
         _animation.Play("Died");
+        _newGameTimer.Start();
     }
 
     public void FishWin()
     {
         EmitSignal(nameof(AllCollected));
         _animation.Play("Win");
+        _newGameTimer.Start();
     }
 
     public void HoldingCollectible()
     {
         _holdingCollectable.Show();
+    }
+
+    public void OnStartButtonPressed()
+    {
+        _startButton.Hide();
+        EmitSignal("StartGame");
+    }
+
+    public void CanPlayNewGame()
+    {
+        _animation.Seek(0);
+        _startButton.Show();
     }
 }
