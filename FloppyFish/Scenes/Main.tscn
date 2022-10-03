@@ -26,10 +26,8 @@ extents = Vector2( 1440, 236 )
 
 [sub_resource type="StreamTexture" id=12]
 flags = 4
-load_path = "res://.import/test-water-image.png-b53d752d24771d9b7842d191ecc7ef11.stex"
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 128, 32 )
 
@@ -47,7 +45,6 @@ animations = [ {
 } ]
 
 [sub_resource type="AtlasTexture" id=6]
-flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 64, 128, 32 )
 
@@ -65,7 +62,6 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id=10]
-flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 128, 32 )
 
@@ -199,14 +195,5 @@ position = Vector2( 658, 494 )
 [connection signal="body_entered" from="Water" to="Fish" method="OnWaterBodyEntered"]
 [connection signal="body_exited" from="Water" to="Fish" method="OnWaterBodyExited"]
 [connection signal="timeout" from="PlatformSpawnTimer" to="." method="OnPlatformSpawnTimeOut"]
-[connection signal="Collected" from="Fish" to="Audio Controller" method="OnFoleyTriggered" binds= [ "Fish", "PickUp", Vector2( 0, 0 ) ]]
-[connection signal="Die" from="Fish" to="HUD" method="FishDied"]
-[connection signal="MovementChanged" from="Fish" to="Audio Controller" method="OnFoleyTriggered" binds= [ Vector2( 0, 0 ) ]]
-[connection signal="SetWaterAirValue" from="Fish" to="HUD" method="SetWaterAir"]
-[connection signal="SuffcationStart" from="Fish" to="HUD" method="OnFishSuffocatingStart"]
-[connection signal="SuffcationStop" from="Fish" to="HUD" method="OnFishSuffocatingStop"]
-[connection signal="WaterEntered" from="Fish" to="Audio Controller" method="OnFoleyTriggered" binds= [ "Fish", "SplashInHighVelo", Vector2( 0, 0 ) ]]
-[connection signal="CollectedCollectable" from="OctopusMech" to="HUD" method="OnCollectableCollected"]
-[connection signal="CollectedCollectable" from="OctopusMech" to="Audio Controller" method="OnFoleyTriggered" binds= [ "Fish", "Drop", Vector2( 0, 0 ) ]]
 [connection signal="body_entered" from="OctopusMech" to="OctopusMech" method="OnOctopusMechBodyEntered"]
 [connection signal="timeout" from="CollectableSpawnTimer" to="." method="AllowSpawnCollectable"]
