@@ -197,9 +197,6 @@ public class Fish : RigidBody2D
             }            
         }
 
-        GD.Print("Hit");
-        GD.Print(string.Join(", ", body.GetGroups()));
-
         if(body.IsInGroup("log"))
         {
             CurrentPlatformKey = "Log";
