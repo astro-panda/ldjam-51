@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Main : Node
 {
 	[Export]
-	public List<PackedScene> PlatformScenes;
+	public List<PackedScene> PlatformScenes { get; set; } = new List<PackedScene>();
 
 	[Export]
 	public float PlatformSpawnInterval = 10;
@@ -25,10 +25,10 @@ public class Main : Node
 		_platformSpawnTimer = GetNode<Timer>("PlatformSpawnTimer");
 		_collectableSpawnTimer = GetNode<Timer>("CollectableSpawnTimer");
 		_fish = GetNode<Fish>("Fish");
-        // PlatformScenes = new List<PackedScene>(){
-        //     GD.Load<PackedScene>("res://Scenes/Platform.tscn"),
-        //     GD.Load<PackedScene>("res://Scenes/Platform2.tscn")
-        // };
+        PlatformScenes = new List<PackedScene>(){
+            GD.Load<PackedScene>("res://Scenes/Platform.tscn"),
+            GD.Load<PackedScene>("res://Scenes/Platform2.tscn")
+        };
 
         StartGame(); // We gona start it up.
     }
