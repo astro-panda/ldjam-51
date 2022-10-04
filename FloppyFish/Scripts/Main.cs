@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Main : Node
 {
 	[Export]
-	public List<PackedScene> PlatformScenes;
+	public List<PackedScene> PlatformScenes { get; set; } = new List<PackedScene>();
 
 	[Export]
 	public float PlatformSpawnInterval = 10;

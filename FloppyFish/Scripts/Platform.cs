@@ -10,6 +10,9 @@ public class Platform : RigidBody2D
 	[Export]
 	public float Speed = 80f;
 
+	[Export]
+	public PackedScene CollectibleScene { get; set; }
+
 	public Vector2 WaterFlow = new Vector2((float)-0.946, (float)-0.326);
 
 	private Vector2 _targetPos = Vector2.Zero;
@@ -17,13 +20,10 @@ public class Platform : RigidBody2D
 
 	private Position2D _collectibleSpawn;
 
-	private PackedScene _collectibleScene;
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_collectibleSpawn = GetNode<Position2D>("CollectibleSpawn");
-		_collectibleScene = GD.Load<PackedScene>("res://Scenes/Collectable.tscn");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -73,7 +73,7 @@ public class Platform : RigidBody2D
 
 		if (canSpawnCollectable)
 		{
-			Collectable collectable = _collectibleScene.InstanceOrNull<Collectable>();
+			Collectable collectable = CollectibleScene.InstanceOrNull<Collectable>();
 
 			if (collectable != null)
 			{
