@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/trashplatform.png-5b99e2ffe19d195f16d17fd6d0488e3e.stex"
+path="res://.import/definitelynotatrashplatform.png-9a33f819655d4a58df859555524b4ac5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Pixelart/trashplatform.png"
-dest_files=[ "res://.import/trashplatform.png-5b99e2ffe19d195f16d17fd6d0488e3e.stex" ]
+source_file="res://Images/Pixelart/definitelynotatrashplatform.png"
+dest_files=[ "res://.import/definitelynotatrashplatform.png-9a33f819655d4a58df859555524b4ac5.stex" ]
 
 [params]
 
